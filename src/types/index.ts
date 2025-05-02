@@ -44,7 +44,7 @@ export interface DataSubjectRequest {
   completedAt?: string;
   notes?: string;
   attachments?: string[];
-  responseData?: any;
+  responseData?: Record<string, unknown>;
 }
 
 // Privacy Policy Types

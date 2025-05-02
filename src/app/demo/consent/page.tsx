@@ -141,7 +141,7 @@ export default function ConsentDemo() {
                       <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">No consent recorded</h3>
                       <div className="mt-2 text-sm text-yellow-700 dark:text-yellow-300">
                         <p>
-                          No consent preferences have been recorded yet. Click "Open Consent Banner" to set your preferences.
+                          No consent preferences have been recorded yet. Click &quot;Open Consent Banner&quot; to set your preferences.
                         </p>
                       </div>
                     </div>

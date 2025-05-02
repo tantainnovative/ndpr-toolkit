@@ -627,7 +627,7 @@ export default function PolicyGenerator({
             </div>
             
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-              This preview shows a summary of your privacy policy. Click "Generate Policy" to create the full document.
+              This preview shows a summary of your privacy policy. Click &quot;Generate Policy&quot; to create the full document.
             </p>
           </div>
         </div>

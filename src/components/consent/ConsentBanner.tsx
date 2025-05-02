@@ -19,7 +19,6 @@ export default function ConsentBanner({
   privacyPolicyUrl = '/privacy-policy',
   options,
   onSave,
-  onClose,
   className = '',
 }: ConsentBannerProps) {
   const [consents, setConsents] = useState<Record<ConsentType, boolean>>(

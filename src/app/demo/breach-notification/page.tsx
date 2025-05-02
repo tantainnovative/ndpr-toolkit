@@ -92,7 +92,7 @@ export default function BreachNotificationDemo() {
             Breach Notification Module
           </h1>
           <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
-            Document and report data breaches in compliance with NDPR's 72-hour notification requirement.
+            Document and report data breaches in compliance with NDPR&apos;s 72-hour notification requirement.
           </p>
         </div>
 
