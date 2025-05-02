@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Vercel optimized configuration
+  // No need for 'output: export' with Vercel
+  // as it supports all Next.js features
+  swcMinify: true,
+  reactStrictMode: true,
+  images: {
+    domains: ['vercel.com'],
+  },
 };
 
 export default nextConfig;

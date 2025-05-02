@@ -1,4 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nigerian Data Protection Compliance Toolkit (NDPR-Toolkit)
+
+An open-source toolkit that helps Nigerian developers implement Nigeria Data Protection Regulation (NDPR) and Data Protection Act (DPA) compliant features in their web applications.
+
+## Project Vision
+
+This toolkit simplifies regulatory compliance for startups and businesses operating in Nigeria by providing ready-to-use components and tools for implementing data protection requirements.
+
+## Key Components
+
+### 1. Consent Management System
+- User-friendly consent banners and modals with customizable styling
+- Granular consent options (necessary, functional, analytics, marketing)
+- Consent storage and retrieval mechanisms
+- Consent change history tracking
+- Time-stamped audit trails
+
+### 2. Data Subject Rights Portal
+- Pre-built UI components for handling:
+  - Right to access personal data
+  - Right to rectification
+  - Right to erasure ("right to be forgotten")
+  - Right to restrict processing
+  - Right to data portability
+  - Dashboard for data controllers to manage requests
+
+### 3. Privacy Policy Generator
+- Interactive wizard to create NDPR-compliant privacy policies
+- Template system with customizable sections
+- Auto-update notifications when regulatory requirements change
+- Version history tracking
+
+### 4. Data Protection Impact Assessment (DPIA) Tool
+- Questionnaire-based tool to help organizations assess data processing risks
+- Risk scoring matrix
+- Mitigation recommendation engine
+- Exportable reports for compliance documentation
+
+### 5. Breach Notification Module
+- Templates for mandatory breach notifications
+- Workflow for documenting breach details
+- Timeline tracking to ensure 72-hour notification compliance
+- Notification delivery to authorities via API (if available)
 
 ## Getting Started
 
@@ -16,21 +58,17 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technical Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js with App Router
+- TypeScript
+- Tailwind CSS
+- React
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+MIT License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Developed by
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tanta Innovative - Positioning as a thought leader in regulatory tech solutions for Nigeria
