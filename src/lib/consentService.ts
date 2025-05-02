@@ -9,6 +9,21 @@ import { v4 as uuidv4 } from 'uuid';
 const CONSENT_STORAGE_KEY = 'ndpr_consent_records';
 const CONSENT_HISTORY_KEY = 'ndpr_consent_history';
 
+// Helper function to get consent history
+const getConsentHistoryHelper = (): ConsentHistoryEntry[] => {
+  if (typeof window === 'undefined') return [];
+  
+  const storedHistory = localStorage.getItem(CONSENT_HISTORY_KEY);
+  if (!storedHistory) return [];
+  
+  try {
+    return JSON.parse(storedHistory) as ConsentHistoryEntry[];
+  } catch (error) {
+    console.error('Error parsing consent history:', error);
+    return [];
+  }
+};
+
 export const consentService = {
   // Save a new consent record
   saveConsent: (consents: Record<ConsentType, boolean>, userId?: string): ConsentRecord => {
@@ -27,7 +42,7 @@ export const consentService = {
       localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentRecord));
       
       // Add to history
-      const history = this.getConsentHistory();
+      const history = getConsentHistoryHelper();
       history.push(consentRecord);
       localStorage.setItem(CONSENT_HISTORY_KEY, JSON.stringify(history));
     }
@@ -52,17 +67,7 @@ export const consentService = {
 
   // Get consent history
   getConsentHistory: (): ConsentHistoryEntry[] => {
-    if (typeof window === 'undefined') return [];
-    
-    const storedHistory = localStorage.getItem(CONSENT_HISTORY_KEY);
-    if (!storedHistory) return [];
-    
-    try {
-      return JSON.parse(storedHistory) as ConsentHistoryEntry[];
-    } catch (error) {
-      console.error('Error parsing consent history:', error);
-      return [];
-    }
+    return getConsentHistoryHelper();
   },
 
   // Update consent with change reason
@@ -87,7 +92,7 @@ export const consentService = {
       localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentRecord));
       
       // Add to history
-      const history = this.getConsentHistory();
+      const history = getConsentHistoryHelper();
       history.push(consentRecord);
       localStorage.setItem(CONSENT_HISTORY_KEY, JSON.stringify(history));
     }

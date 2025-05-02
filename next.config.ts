@@ -3,7 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // GitHub Pages configuration
   output: 'export',  // Enable static HTML export
-  swcMinify: true,
   reactStrictMode: true,
   images: {
     unoptimized: true,  // Required for static export

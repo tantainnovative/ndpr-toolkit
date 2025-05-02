@@ -191,19 +191,19 @@ export default function DPIADemo() {
                         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 mr-4">
                           <div 
                             className={`h-4 rounded-full ${
-                              assessment && assessment.score < 25 
+                              assessment && typeof assessment.score === 'number' && assessment.score < 25 
                                 ? 'bg-green-500' 
-                                : assessment && assessment.score < 50 
+                                : assessment && typeof assessment.score === 'number' && assessment.score < 50 
                                   ? 'bg-yellow-500' 
-                                  : assessment && assessment.score < 75 
+                                  : assessment && typeof assessment.score === 'number' && assessment.score < 75 
                                     ? 'bg-orange-500' 
                                     : 'bg-red-500'
                             }`}
-                            style={{ width: `${assessment?.score}%` }}
+                            style={{ width: `${assessment?.score ?? 0}%` }}
                           ></div>
                         </div>
-                        <span className={`font-medium ${assessment ? getRiskLevelClass(assessment.score) : ''}`}>
-                          {assessment?.score}% - {assessment ? getRiskLevelText(assessment.score) : ''}
+                        <span className={`font-medium ${assessment && typeof assessment.score === 'number' ? getRiskLevelClass(assessment.score) : ''}`}>
+                          {assessment?.score ?? 0}% - {assessment && typeof assessment.score === 'number' ? getRiskLevelText(assessment.score) : ''}
                         </span>
                       </div>
                     </dd>
@@ -214,7 +214,7 @@ export default function DPIADemo() {
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 dark:text-white sm:mt-0 sm:col-span-2">
                       <ul className="border border-gray-200 dark:border-gray-700 rounded-md divide-y divide-gray-200 dark:divide-gray-700">
-                        {assessment?.recommendations.map((recommendation, index) => (
+                        {assessment?.recommendations?.map((recommendation, index) => (
                           <li key={index} className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                             <div className="w-0 flex-1 flex items-center">
                               <svg className="flex-shrink-0 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
