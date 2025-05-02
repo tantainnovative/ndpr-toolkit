@@ -1,6 +1,6 @@
 # NDPR-Toolkit Deployment Guide
 
-This guide provides step-by-step instructions for deploying the NDPR-Toolkit to Vercel and setting up the CI/CD pipeline.
+This guide provides step-by-step instructions for deploying the NDPR-Toolkit to GitHub Pages and setting up the CI/CD pipeline.
 
 ## Initial Setup and Push to GitHub
 
@@ -16,58 +16,72 @@ This guide provides step-by-step instructions for deploying the NDPR-Toolkit to 
 
 2. **Install Required Development Dependencies**
    ```bash
-   npm install --save-dev husky lint-staged standard-version @commitlint/cli @commitlint/config-conventional
+   npm install --save-dev husky lint-staged standard-version @commitlint/cli @commitlint/config-conventional gh-pages
    npm run prepare
    ```
 
-## Setting Up Vercel Deployment
+## Setting Up GitHub Pages Deployment
 
-### Step 1: Create a Vercel Account
-
-1. Go to [vercel.com](https://vercel.com) and sign up using your GitHub account
-2. Connect your GitHub account if not already connected
-
-### Step 2: Import Your GitHub Repository
-
-1. From the Vercel dashboard, click "Add New..." > "Project"
-2. Select the "tantainnovative/ndpr-toolkit" repository
-3. Configure project settings:
-   - **Framework Preset**: Next.js
-   - **Root Directory**: ./
-   - **Build Command**: `npm run build`
-   - **Install Command**: `npm ci`
-   - **Output Directory**: .next (default)
-4. Add any environment variables if needed
-5. Click "Deploy"
-
-### Step 3: Get Vercel Deployment Information
-
-After deploying, you'll need to collect the following information for GitHub Actions integration:
-
-1. **Vercel Token**:
-   - Go to [Vercel Account Settings](https://vercel.com/account/tokens)
-   - Click "Create" to generate a new token
-   - Name it "NDPR-Toolkit GitHub Actions"
-   - Copy the token value
-
-2. **Vercel Organization ID**:
-   - Go to Vercel Dashboard
-   - Click on your profile picture > Settings
-   - Copy the "ID" value under "Your ID"
-
-3. **Vercel Project ID**:
-   - Go to your project in the Vercel Dashboard
-   - Click on "Settings" > "General"
-   - Copy the "Project ID" value
-
-### Step 4: Add Secrets to GitHub Repository
+### Step 1: Configure GitHub Repository for Pages
 
 1. Go to your GitHub repository (https://github.com/tantainnovative/ndpr-toolkit)
-2. Click on "Settings" > "Secrets and variables" > "Actions"
-3. Add the following secrets:
-   - `VERCEL_TOKEN`: Paste your Vercel token
-   - `VERCEL_ORG_ID`: Paste your Organization ID
-   - `VERCEL_PROJECT_ID`: Paste your Project ID
+2. Click on "Settings" > "Pages"
+3. Under "Source", select "GitHub Actions"
+
+### Step 2: Configure Next.js for Static Export
+
+1. Ensure your `next.config.ts` has the following settings:
+   ```typescript
+   const nextConfig: NextConfig = {
+     output: 'export',  // Enable static HTML export
+     swcMinify: true,
+     reactStrictMode: true,
+     images: {
+       unoptimized: true,  // Required for static export
+     },
+     basePath: '/ndpr-toolkit',
+     assetPrefix: '/ndpr-toolkit',
+   };
+   ```
+
+2. Update your package.json scripts to include:
+   ```json
+   "export": "next export",
+   "build:static": "next build && next export",
+   "deploy": "gh-pages -d out"
+   ```
+
+### Step 3: Understand the GitHub Pages Workflow
+
+The GitHub Actions workflow (`.github/workflows/deploy-github-pages.yml`) handles the deployment process:
+
+1. When you push to the `main` branch, it automatically:
+   - Checks out your code
+   - Sets up Node.js
+   - Installs dependencies
+   - Builds your project with static export
+   - Deploys to GitHub Pages
+
+2. The workflow uses GitHub's official Pages deployment actions:
+   - `actions/configure-pages` to set up the environment
+   - `actions/upload-pages-artifact` to upload the build output
+   - `actions/deploy-pages` to deploy to GitHub Pages
+
+### Step 4: Manual Deployment (Optional)
+
+If you prefer to deploy manually without using GitHub Actions:
+
+1. Build the static site:
+   ```bash
+   npm run build
+   ```
+
+2. Deploy to GitHub Pages:
+   ```bash
+   npm run deploy
+   ```
+
+This uses the `gh-pages` package to push the `out` directory to the `gh-pages` branch.
 
 ## Automated Deployments
 
@@ -77,7 +91,7 @@ Once set up, your deployment workflow will be:
    - Make changes to your code
    - Commit using conventional commit format: `type(scope): description`
    - Push to the main branch
-   - GitHub Actions will automatically deploy to Vercel
+   - GitHub Actions will automatically deploy to GitHub Pages
 
 2. **For Releases**:
    - Go to the "Actions" tab in your GitHub repository
@@ -89,56 +103,59 @@ Once set up, your deployment workflow will be:
      - Create a new version
      - Update the changelog
      - Create a GitHub release
-     - Deploy to Vercel
+     - Deploy to GitHub Pages
 
 ## Custom Domain Setup (Optional)
 
-To add a custom domain to your Vercel deployment:
+To add a custom domain to your GitHub Pages site:
 
-1. Go to your project in the Vercel Dashboard
-2. Click on "Settings" > "Domains"
-3. Add your domain and follow the verification steps
-4. Update DNS records as instructed by Vercel
+1. Go to your repository on GitHub
+2. Click on "Settings" > "Pages"
+3. Under "Custom domain", enter your domain name
+4. Click "Save"
+5. Update your DNS records as instructed by GitHub
+6. Once verified, check "Enforce HTTPS"
 
-## Monitoring and Analytics
+## GitHub Pages Features
 
-Vercel provides built-in analytics and monitoring:
+### Static Site Generation
 
-1. Go to your project in the Vercel Dashboard
-2. Click on "Analytics" to view performance metrics
-3. Click on "Logs" to view deployment and runtime logs
+GitHub Pages is optimized for static sites, which is perfect for your NDPR-Toolkit since it doesn't require server-side APIs. Benefits include:
 
-## Vercel Specific Features
+1. Fast loading times
+2. High availability
+3. Free hosting
+4. Automatic HTTPS
 
-### Preview Deployments
+### Branch-Based Deployment
 
-Vercel automatically creates preview deployments for every pull request:
+You can choose to deploy from different branches:
 
-1. Create a pull request in your repository
-2. Vercel will comment on the PR with a link to the preview deployment
-3. Review the changes in the preview before merging
+1. The `gh-pages` branch (when using the `gh-pages` package)
+2. The `main` branch (when configured in settings)
+3. A `/docs` folder in your main branch
 
-### Environment Variables
+## Monitoring and Performance
 
-To add environment variables to your Vercel project:
+To monitor your GitHub Pages site:
 
-1. Go to your project in the Vercel Dashboard
-2. Click on "Settings" > "Environment Variables"
-3. Add variables and specify which environments they apply to (Production, Preview, Development)
+1. Use GitHub's traffic insights in the repository's "Insights" tab
+2. Consider adding Google Analytics or similar tools to your site
+3. Use Lighthouse in Chrome DevTools to check performance
 
 ## Troubleshooting
 
-If you encounter issues with your deployment:
+If you encounter issues with your GitHub Pages deployment:
 
-1. Check the build logs in the Vercel Dashboard
-2. Verify that all required environment variables are set
-3. Ensure your Next.js configuration is compatible with Vercel
-4. Check GitHub Actions logs for any errors
+1. Check the GitHub Actions logs for build errors
+2. Verify that your `next.config.ts` has the correct static export settings
+3. Ensure all assets use relative paths with the correct `basePath`
+4. Check that your repository is properly configured for GitHub Pages
 
 ## Additional Resources
 
-- [Vercel Documentation](https://vercel.com/docs)
-- [Next.js Documentation](https://nextjs.org/docs)
+- [GitHub Pages Documentation](https://docs.github.com/en/pages)
+- [Next.js Static Export Documentation](https://nextjs.org/docs/advanced-features/static-html-export)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Semantic Versioning](https://semver.org/)
 - [Conventional Commits](https://www.conventionalcommits.org/)

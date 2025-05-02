@@ -1,14 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Vercel optimized configuration
-  // No need for 'output: export' with Vercel
-  // as it supports all Next.js features
+  // GitHub Pages configuration
+  output: 'export',  // Enable static HTML export
   swcMinify: true,
   reactStrictMode: true,
   images: {
-    domains: ['vercel.com'],
+    unoptimized: true,  // Required for static export
   },
+  // Configure basePath and assetPrefix for GitHub Pages
+  basePath: '/ndpr-toolkit',
+  assetPrefix: '/ndpr-toolkit',
 };
 
 export default nextConfig;
