@@ -108,6 +108,24 @@ Vercel provides built-in analytics and monitoring:
 2. Click on "Analytics" to view performance metrics
 3. Click on "Logs" to view deployment and runtime logs
 
+## Vercel Specific Features
+
+### Preview Deployments
+
+Vercel automatically creates preview deployments for every pull request:
+
+1. Create a pull request in your repository
+2. Vercel will comment on the PR with a link to the preview deployment
+3. Review the changes in the preview before merging
+
+### Environment Variables
+
+To add environment variables to your Vercel project:
+
+1. Go to your project in the Vercel Dashboard
+2. Click on "Settings" > "Environment Variables"
+3. Add variables and specify which environments they apply to (Production, Preview, Development)
+
 ## Troubleshooting
 
 If you encounter issues with your deployment:
