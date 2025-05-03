@@ -58,6 +58,32 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Deployment
+
+### GitHub Pages
+
+This project is configured to deploy automatically to GitHub Pages using GitHub Actions. When you push changes to the `main` branch, the following will happen:
+
+1. The GitHub Actions workflow will build the project
+2. The built files will be deployed to GitHub Pages
+3. Your site will be available at `https://[your-username].github.io/ndpr-toolkit/`
+
+To manually deploy to GitHub Pages:
+
+```bash
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages (if you have gh-pages installed)
+npm run deploy
+```
+
+#### Configuration
+
+The GitHub Pages deployment is configured in the following files:
+- `next.config.ts` - Contains the Next.js configuration for static export
+- `.github/workflows/deploy.yml` - Contains the GitHub Actions workflow for automated deployment
+
 ## Technical Stack
 
 - Next.js with App Router
