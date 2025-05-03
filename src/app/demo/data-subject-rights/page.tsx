@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import DataSubjectRequestForm from '@/components/data-subject-rights/DataSubjectRequestForm';
 import { DataSubjectRequest, RequestStatus, RequestType } from '@/types';
@@ -11,12 +11,20 @@ export default function DataSubjectRightsDemo() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState<DataSubjectRequest | null>(null);
   const [showRequestDetails, setShowRequestDetails] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  
+  // This effect runs only on the client side after hydration
+  // It prevents hydration mismatches with date formatting
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleSubmitRequest = (data: {
     requestType: RequestType;
     name: string;
     email: string;
     details: string;
+    consent: boolean;
   }) => {
     const newRequest: DataSubjectRequest = {
       id: uuidv4(),
@@ -28,6 +36,7 @@ export default function DataSubjectRightsDemo() {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       notes: data.details,
+      hasConsent: data.consent,
     };
 
     setRequests((prev) => [newRequest, ...prev]);
@@ -205,7 +214,9 @@ export default function DataSubjectRightsDemo() {
                             <div className="text-sm text-gray-500 dark:text-gray-400">
                               Submitted on{' '}
                               <time dateTime={request.createdAt}>
-                                {new Date(request.createdAt).toLocaleDateString()}
+                                {isClient 
+                                  ? new Date(request.createdAt).toLocaleDateString() 
+                                  : request.createdAt.split('T')[0]}
                               </time>
                             </div>
                             <div>
@@ -231,109 +242,186 @@ export default function DataSubjectRightsDemo() {
         {/* Request Details Modal */}
         {showRequestDetails && selectedRequest && (
           <div className="fixed inset-0 overflow-y-auto z-50">
-            <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div className="flex items-center justify-center min-h-screen p-4">
+              {/* Backdrop */}
               <div className="fixed inset-0 transition-opacity" aria-hidden="true">
                 <div className="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75"></div>
               </div>
 
-              <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-              <div className="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <div className="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                  <div className="sm:flex sm:items-start">
-                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                      <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-                        Request Details
-                      </h3>
-                      <div className="mt-4 space-y-4">
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">Request Type</h4>
-                          <p className="mt-1 text-sm text-gray-900 dark:text-white">
-                            {getRequestTypeLabel(selectedRequest.requestType)}
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">Requester</h4>
-                          <p className="mt-1 text-sm text-gray-900 dark:text-white">
-                            {selectedRequest.requesterName} ({selectedRequest.requesterEmail})
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">Status</h4>
-                          <p className="mt-1">
-                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(selectedRequest.status)}`}>
+              {/* Modal */}
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden w-full max-w-2xl z-10 relative">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-bold text-white">
+                      Request Details
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => setShowRequestDetails(false)}
+                      className="text-white hover:text-gray-200 focus:outline-none"
+                    >
+                      <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Content */}
+                <div className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Left Column */}
+                    <div className="space-y-5">
+                      <div className="bg-gray-50 dark:bg-gray-700/30 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Request Information</h4>
+                        
+                        <div className="space-y-3">
+                          <div>
+                            <span className="block text-xs text-gray-500 dark:text-gray-400">Request Type</span>
+                            <span className="block text-sm font-medium text-gray-900 dark:text-white mt-1">
+                              {getRequestTypeLabel(selectedRequest.requestType)}
+                            </span>
+                          </div>
+                          
+                          <div>
+                            <span className="block text-xs text-gray-500 dark:text-gray-400">Status</span>
+                            <span className={`mt-1 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(selectedRequest.status)}`}>
                               {selectedRequest.status.charAt(0).toUpperCase() + selectedRequest.status.slice(1).replace('-', ' ')}
                             </span>
-                          </p>
+                          </div>
+                          
+                          <div>
+                            <span className="block text-xs text-gray-500 dark:text-gray-400">Consent Given</span>
+                            <span className={`mt-1 flex items-center ${selectedRequest.hasConsent ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                              {selectedRequest.hasConsent ? (
+                                <>
+                                  <svg className="h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                  </svg>
+                                  <span className="text-sm font-medium">Yes</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg className="h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                  </svg>
+                                  <span className="text-sm font-medium">No</span>
+                                </>
+                              )}
+                            </span>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">Request Details</h4>
-                          <p className="mt-1 text-sm text-gray-900 dark:text-white whitespace-pre-wrap">
+                      </div>
+                      
+                      <div className="bg-gray-50 dark:bg-gray-700/30 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Requester Information</h4>
+                        
+                        <div className="space-y-3">
+                          <div>
+                            <span className="block text-xs text-gray-500 dark:text-gray-400">Name</span>
+                            <span className="block text-sm font-medium text-gray-900 dark:text-white mt-1">
+                              {selectedRequest.requesterName}
+                            </span>
+                          </div>
+                          
+                          <div>
+                            <span className="block text-xs text-gray-500 dark:text-gray-400">Email</span>
+                            <span className="block text-sm font-medium text-gray-900 dark:text-white mt-1">
+                              {selectedRequest.requesterEmail}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Right Column */}
+                    <div className="space-y-5">
+                      <div className="bg-gray-50 dark:bg-gray-700/30 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Request Details</h4>
+                        <div className="max-h-32 overflow-y-auto pr-2">
+                          <p className="text-sm text-gray-900 dark:text-white whitespace-pre-wrap">
                             {selectedRequest.notes}
                           </p>
                         </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">Timeline</h4>
-                          <div className="mt-1 text-sm text-gray-900 dark:text-white">
-                            <div className="flex justify-between">
-                              <span>Created:</span>
-                              <span>{new Date(selectedRequest.createdAt).toLocaleString()}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span>Last Updated:</span>
-                              <span>{new Date(selectedRequest.updatedAt).toLocaleString()}</span>
-                            </div>
-                            {selectedRequest.completedAt && (
-                              <div className="flex justify-between">
-                                <span>Completed:</span>
-                                <span>{new Date(selectedRequest.completedAt).toLocaleString()}</span>
-                              </div>
-                            )}
+                      </div>
+                      
+                      <div className="bg-gray-50 dark:bg-gray-700/30 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Timeline</h4>
+                                                <div className="space-y-3">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-xs text-gray-500 dark:text-gray-400">Created</span>
+                            <span className="text-sm text-gray-900 dark:text-white">
+                              {isClient 
+                                ? new Date(selectedRequest.createdAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) 
+                                : selectedRequest.createdAt}
+                            </span>
                           </div>
+                          
+                          <div className="flex justify-between text-sm">
+                            <span className="text-xs text-gray-500 dark:text-gray-400">Last Updated</span>
+                            <span className="text-sm text-gray-900 dark:text-white">
+                              {isClient 
+                                ? new Date(selectedRequest.updatedAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) 
+                                : selectedRequest.updatedAt}
+                            </span>
+                          </div>
+                          
+                          {selectedRequest.completedAt && (
+                            <div className="flex justify-between text-sm">
+                              <span className="text-xs text-gray-500 dark:text-gray-400">Completed</span>
+                              <span className="text-sm text-gray-900 dark:text-white">
+                                {isClient 
+                                  ? new Date(selectedRequest.completedAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) 
+                                  : selectedRequest.completedAt}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                
+                {/* Footer with action buttons */}
+                <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4 flex flex-col sm:flex-row-reverse justify-end items-center space-y-2 sm:space-y-0">
                   <button
                     type="button"
                     onClick={() => setShowRequestDetails(false)}
-                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3"
                   >
                     Close
                   </button>
                   
                   {/* Status Update Buttons */}
-                  <div className="mt-3 sm:mt-0 sm:flex-1 sm:flex sm:justify-start">
-                    {selectedRequest.status === 'pending' && (
-                      <>
-                        <button
-                          type="button"
-                          onClick={() => handleUpdateStatus(selectedRequest.id, 'in-progress')}
-                          className="w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                        >
-                          Start Processing
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleUpdateStatus(selectedRequest.id, 'rejected')}
-                          className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                        >
-                          Reject
-                        </button>
-                      </>
-                    )}
-                    {selectedRequest.status === 'in-progress' && (
+                  {selectedRequest.status === 'pending' && (
+                    <div className="flex flex-col sm:flex-row w-full sm:w-auto space-y-2 sm:space-y-0">
                       <button
                         type="button"
-                        onClick={() => handleUpdateStatus(selectedRequest.id, 'completed')}
-                        className="w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        onClick={() => handleUpdateStatus(selectedRequest.id, 'in-progress')}
+                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3"
                       >
-                        Mark as Completed
+                        Start Processing
                       </button>
-                    )}
-                  </div>
+                      <button
+                        type="button"
+                        onClick={() => handleUpdateStatus(selectedRequest.id, 'rejected')}
+                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  )}
+                  
+                  {selectedRequest.status === 'in-progress' && (
+                    <button
+                      type="button"
+                      onClick={() => handleUpdateStatus(selectedRequest.id, 'completed')}
+                      className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3"
+                    >
+                      Mark as Completed
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
