@@ -5,6 +5,9 @@ import Link from 'next/link';
 import ConsentBanner from '@/components/consent/ConsentBanner';
 import { ConsentOption, ConsentType, ConsentRecord } from '@/types';
 import consentService from '@/lib/consentService';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
 
 export default function ConsentDemo() {
   const [showBanner, setShowBanner] = useState(false);
@@ -71,7 +74,7 @@ export default function ConsentDemo() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
+        <div className="text-center mb-10">
           <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
             Consent Management Demo
           </h1>
@@ -80,37 +83,33 @@ export default function ConsentDemo() {
           </p>
         </div>
 
-        <div className="mt-10 bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
-          <div className="px-4 py-5 sm:p-6">
+        <Card>
+          <CardHeader>
             <div className="flex flex-col md:flex-row md:justify-between md:items-center">
               <div>
-                <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-                  Consent Preferences
-                </h2>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  Manage your cookie and tracking preferences.
-                </p>
+                <CardTitle>Consent Preferences</CardTitle>
+                <CardDescription>Manage your cookie and tracking preferences.</CardDescription>
               </div>
               <div className="mt-4 md:mt-0 space-x-3">
-                <button
-                  type="button"
+                <Button
+                  variant="primary"
                   onClick={() => setShowBanner(true)}
-                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   Open Consent Banner
-                </button>
-                <button
-                  type="button"
+                </Button>
+                <Button
+                  variant="secondary"
                   onClick={handleResetConsent}
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   Reset Consent
-                </button>
+                </Button>
               </div>
             </div>
-
+          </CardHeader>
+          
+          <CardContent>
             {currentConsent ? (
-              <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
                 <h3 className="text-md font-medium text-gray-900 dark:text-white">Current Consent Status</h3>
                 <div className="mt-4 bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -129,7 +128,7 @@ export default function ConsentDemo() {
                 </div>
               </div>
             ) : (
-              <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
                 <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-md">
                   <div className="flex">
                     <div className="flex-shrink-0">
@@ -152,8 +151,8 @@ export default function ConsentDemo() {
 
             {consentHistory.length > 0 && (
               <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
-                <h3 className="text-md font-medium text-gray-900 dark:text-white">Consent History</h3>
-                <div className="mt-4 overflow-x-auto">
+                <h3 className="text-md font-medium text-gray-900 dark:text-white mb-4">Consent History</h3>
+                <div className="overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead className="bg-gray-50 dark:bg-gray-800">
                       <tr>
@@ -181,40 +180,32 @@ export default function ConsentDemo() {
                             {new Date(record.timestamp).toLocaleString()}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              record.consents.necessary 
-                                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-                                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                            }`}>
+                            <Badge
+                              variant={record.consents.necessary ? 'success' : 'danger'}
+                            >
                               {record.consents.necessary ? 'Allowed' : 'Denied'}
-                            </span>
+                            </Badge>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              record.consents.functional 
-                                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-                                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                            }`}>
+                            <Badge
+                              variant={record.consents.functional ? 'success' : 'danger'}
+                            >
                               {record.consents.functional ? 'Allowed' : 'Denied'}
-                            </span>
+                            </Badge>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              record.consents.analytics 
-                                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-                                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                            }`}>
+                            <Badge
+                              variant={record.consents.analytics ? 'success' : 'danger'}
+                            >
                               {record.consents.analytics ? 'Allowed' : 'Denied'}
-                            </span>
+                            </Badge>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              record.consents.marketing 
-                                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-                                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                            }`}>
+                            <Badge
+                              variant={record.consents.marketing ? 'success' : 'danger'}
+                            >
                               {record.consents.marketing ? 'Allowed' : 'Denied'}
-                            </span>
+                            </Badge>
                           </td>
                         </tr>
                       ))}
@@ -223,19 +214,21 @@ export default function ConsentDemo() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         <div className="mt-6 text-center">
-          <Link 
-            href="/"
-            className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+          <Button
+            variant="link"
+            asChild
           >
-            <svg className="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
-            </svg>
-            Back to Home
-          </Link>
+            <Link href="/">
+              <svg className="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+              </svg>
+              Back to Home
+            </Link>
+          </Button>
         </div>
       </div>
 
