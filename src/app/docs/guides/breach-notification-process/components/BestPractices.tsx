@@ -16,7 +16,7 @@ export default function BestPractices() {
           <CardContent className="p-6">
             <h3 className="font-bold text-lg mb-2">Prepare in Advance</h3>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Don't wait for a breach to occur before developing your response plan. Have templates, 
+              don&apos;t wait for a breach to occur before developing your response plan. Have templates, 
               procedures, and roles defined in advance so you can respond quickly when a breach happens.
             </p>
           </CardContent>
@@ -27,7 +27,7 @@ export default function BestPractices() {
             <h3 className="font-bold text-lg mb-2">Train Your Team</h3>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
               Ensure that all staff members know how to identify and report a potential data breach. 
-              Conduct regular training sessions and drills to keep the breach response process fresh in everyone's minds.
+              Conduct regular training sessions and drills to keep the breach response process fresh in everyone&apos;s minds.
             </p>
           </CardContent>
         </Card>
@@ -36,7 +36,7 @@ export default function BestPractices() {
           <CardContent className="p-6">
             <h3 className="font-bold text-lg mb-2">Document Everything</h3>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Maintain detailed records of all breaches, including those that don't require notification. 
+              Maintain detailed records of all breaches, including those that don&apos;t require notification. 
               Document the facts of the breach, its effects, and the remedial actions taken. This is a requirement under the NDPR.
             </p>
           </CardContent>

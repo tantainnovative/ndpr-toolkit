@@ -45,7 +45,7 @@ export default function Resources() {
           <CardContent className="p-4">
             <h3 className="font-medium text-gray-900 dark:text-white mb-2">Breach Response Plan Template</h3>
             <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-              A customizable template for creating your organization's breach response plan.
+              A customizable template for creating your organization&apos;s breach response plan.
             </p>
             <Button asChild variant="outline" size="sm">
               <a href="/templates/breach-response-plan.docx" target="_blank" rel="noopener noreferrer">
@@ -73,7 +73,7 @@ export default function Resources() {
       <div className="mt-8">
         <h3 className="text-xl font-bold mb-3">Breach Notification Checklist</h3>
         <p className="mb-3">
-          Use this checklist to ensure you've covered all the essential elements of the breach notification process:
+          Use this checklist to ensure you&apos;ve covered all the essential elements of the breach notification process:
         </p>
         
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">

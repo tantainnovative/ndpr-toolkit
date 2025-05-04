@@ -194,7 +194,7 @@ describe('ConsentStorage', () => {
     // Set invalid JSON in localStorage
     mockLocalStorage.getItem.mockReturnValueOnce('invalid-json');
 
-    // We're just testing that the component doesn't crash with invalid data
+    // We're just testing that the component doesn&apos;t crash with invalid data
     // The component will log an error but should continue to function
     render(
       <ConsentStorage

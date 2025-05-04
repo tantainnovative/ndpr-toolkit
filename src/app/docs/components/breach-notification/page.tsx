@@ -13,7 +13,7 @@ export default function BreachNotificationDocs() {
     >
       <div className="flex mb-6 space-x-2">
         <Button asChild variant="outline" size="sm">
-          <Link href="/demo/breach-notification">
+          <Link href="/ndpr-demos/breach-notification">
             View Demo
           </Link>
         </Button>
@@ -49,7 +49,7 @@ export default function BreachNotificationDocs() {
           <pre><code>npm install @tantainnovative/ndpr-toolkit</code></pre>
         </div>
         <p>
-          Or if you're using yarn:
+          Or if you&apos;re using yarn:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>yarn add @tantainnovative/ndpr-toolkit</code></pre>
@@ -136,7 +136,7 @@ export default function BreachNotificationDocs() {
       <section id="usage" className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Usage</h2>
         <p className="mb-4">
-          Here's a complete example of how to implement the Breach Notification system in your application:
+          Here&apos;s a complete example of how to implement the Breach Notification system in your application:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>{`import { useState, useEffect } from 'react';
@@ -446,7 +446,7 @@ function BreachManagementDashboard() {
         <h2 className="text-2xl font-bold mb-4">72-Hour Notification Timeline</h2>
         <p className="mb-4">
           The NDPR requires organizations to notify NITDA of data breaches within 72 hours of becoming aware of the breach. 
-          Here's a recommended timeline for handling breaches:
+          Here&apos;s a recommended timeline for handling breaches:
         </p>
         
         <div className="relative border-l-2 border-blue-500 pl-8 pb-8 space-y-10">

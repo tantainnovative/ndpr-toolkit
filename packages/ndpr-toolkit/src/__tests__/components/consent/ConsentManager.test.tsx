@@ -116,7 +116,7 @@ describe('ConsentManager', () => {
     // Find the necessary checkbox (required)
     const necessaryCheckbox = checkboxes.find(checkbox => checkbox.hasAttribute('disabled'));
     
-    // Check that it's disabled
+    // Check thatit&apos;s disabled
     expect(necessaryCheckbox).toBeDisabled();
   });
 });

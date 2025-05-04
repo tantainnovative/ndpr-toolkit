@@ -62,7 +62,7 @@ export default function DataSubjectRequestsGuide() {
             </div>
             <h3 className="text-xl font-bold">Request Submission</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              The first step is providing a way for data subjects to submit their requests. The NDPR Toolkit's DSRRequestForm 
+              The first step is providing a way for data subjects to submit their requests. The NDPR Toolkit&apos;s DSRRequestForm 
               component is designed for this purpose.
             </p>
             <div className="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
@@ -164,7 +164,7 @@ function DSRSubmissionPage() {
             <h3 className="text-xl font-bold">Request Assessment</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Once the identity of the data subject has been verified, you need to assess the request to determine what action is required. 
-              This includes identifying what data is involved, what systems it's stored in, and what actions need to be taken.
+              This includes identifying what data is involved, what systemsit&apos;s stored in, and what actions need to be taken.
             </p>
             <div className="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
               <h4 className="font-medium mb-2">Code Example</h4>
@@ -306,7 +306,7 @@ function GenerateResponse({ request, assessment, fulfillment }) {
         <h2 className="text-2xl font-bold mb-4">Administrative Dashboard</h2>
         <p className="mb-4">
           To efficiently manage data subject requests, you need an administrative dashboard that provides an overview of all requests 
-          and their status. The NDPR Toolkit's DSRDashboard component is designed for this purpose.
+          and their status. The NDPR Toolkit&apos;s DSRDashboard component is designed for this purpose.
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>{`import { DSRDashboard } from '@tantainnovative/ndpr-toolkit';
@@ -409,7 +409,7 @@ function AdminDashboard() {
       <section id="request-tracking" className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Request Tracking for Data Subjects</h2>
         <p className="mb-4">
-          Data subjects should be able to track the status of their requests. The NDPR Toolkit's DSRTracker component 
+          Data subjects should be able to track the status of their requests. The NDPR Toolkit&apos;s DSRTracker component 
           provides a user interface for this purpose.
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
@@ -510,7 +510,7 @@ function RequestTrackingPage() {
             <CardContent className="p-6">
               <h3 className="font-bold text-lg mb-2">Robust Identity Verification</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Implement appropriate identity verification measures to ensure you're providing data to the right person. 
+                Implement appropriate identity verification measures to ensure you&apos;re providing data to the right person. 
                 This is crucial for preventing unauthorized access to personal data.
               </p>
             </CardContent>
@@ -541,7 +541,7 @@ function RequestTrackingPage() {
               <h3 className="font-bold text-lg mb-2">Staff Training</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
                 Ensure that staff who handle data subject requests are trained on the NDPR requirements 
-                and your organization's processes. This includes understanding the different types of requests 
+                and your organization&apos;s processes. This includes understanding the different types of requests 
                 and how to respond to them.
               </p>
             </CardContent>
@@ -580,8 +580,8 @@ function RequestTrackingPage() {
         <ul className="list-disc pl-6 mb-6">
           <li>Verify the identity of the data subject</li>
           <li>Verify the accuracy of the new data provided</li>
-          <li>Update the data in all systems where it's stored</li>
-          <li>Inform any third parties with whom you've shared the data about the correction</li>
+          <li>Update the data in all systems whereit&apos;s stored</li>
+          <li>Inform any third parties with whom you&apos;ve shared the data about the correction</li>
         </ul>
         
         <h3 className="text-xl font-bold mb-4">Erasure Requests</h3>
@@ -591,8 +591,8 @@ function RequestTrackingPage() {
         <ul className="list-disc pl-6 mb-6">
           <li>Verify the identity of the data subject</li>
           <li>Determine if one of the grounds for erasure applies</li>
-          <li>Delete the data from all systems where it's stored</li>
-          <li>Inform any third parties with whom you've shared the data about the erasure</li>
+          <li>Delete the data from all systems whereit&apos;s stored</li>
+          <li>Inform any third parties with whom you&apos;ve shared the data about the erasure</li>
           <li>Implement technical measures to ensure the data is permanently deleted</li>
         </ul>
         
@@ -604,7 +604,7 @@ function RequestTrackingPage() {
           <li>Verify the identity of the data subject</li>
           <li>Determine if one of the grounds for restriction applies</li>
           <li>Implement technical measures to restrict processing of the data</li>
-          <li>Inform any third parties with whom you've shared the data about the restriction</li>
+          <li>Inform any third parties with whom you&apos;ve shared the data about the restriction</li>
           <li>Inform the data subject before lifting the restriction</li>
         </ul>
         

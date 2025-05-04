@@ -92,7 +92,7 @@ describe('DSRDashboard', () => {
     const selectElements = screen.getAllByRole('combobox');
     expect(selectElements.length).toBeGreaterThan(0);
     
-    // Check that there's a search input
+    // Check that tHere&apos;s a search input
     const searchInput = screen.getByPlaceholderText(/Search requests/i);
     expect(searchInput).toBeInTheDocument();
   });

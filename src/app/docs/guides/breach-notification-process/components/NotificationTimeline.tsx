@@ -6,7 +6,7 @@ export default function NotificationTimeline() {
       <h2 className="text-2xl font-bold mb-4">72-Hour Notification Timeline</h2>
       <p className="mb-4">
         The 72-hour deadline for notifying NITDA about a data breach begins from the moment you become aware of the breach. 
-        This timeline is tight, so having a well-defined process in place is essential. Here's a recommended timeline for 
+        This timeline is tight, so having a well-defined process in place is essential. Here&apos;s a recommended timeline for 
         handling breaches using the NDPR Toolkit components:
       </p>
       
@@ -80,9 +80,9 @@ export default function NotificationTimeline() {
       <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-md mt-6">
         <h4 className="text-yellow-800 dark:text-yellow-200 font-medium mb-2">Important Note on the 72-Hour Deadline</h4>
         <p className="text-yellow-700 dark:text-yellow-300 text-sm">
-          The 72-hour deadline applies even if you don't have all the details about the breach. If you can't provide 
+          The 72-hour deadline applies even if you don&apos;t have all the details about the breach. If you can&apos;t provide 
           complete information within 72 hours, you should still make the initial notification with the information 
-          available and follow up with additional details as they become available. The NDPR Toolkit's 
+          available and follow up with additional details as they become available. The NDPR Toolkit&apos;s 
           RegulatoryReportGenerator component supports both initial and supplementary notifications.
         </p>
       </div>

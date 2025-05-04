@@ -4,13 +4,14 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
-import { DPIAQuestionnaire, useDPIA } from '@tantainnovative/ndpr-toolkit';
+import { DPIAQuestionnaire } from '@tantainnovative/ndpr-toolkit';
 import type { DPIAQuestion, DPIAResult } from '@tantainnovative/ndpr-toolkit';
 
 export default function DPIADemoPage() {
   const [activeTab, setActiveTab] = useState('form');
   const [isClient, setIsClient] = useState(false);
-  const [assessmentData, setAssessmentData] = useState<any>(null);
+  // Removed unused state variables
+  const [assessmentData, setAssessmentData] = useState<Record<string, unknown>>({});
   const [assessmentResult, setAssessmentResult] = useState<DPIAResult | null>(null);
   
   // Define DPIA questions
@@ -183,12 +184,12 @@ export default function DPIADemoPage() {
     setAssessmentResult(mockResult);
   }, [isClient]);
 
-  const handleSubmitAssessment = (data: any) => {
-    setAssessmentData(data);
+  const handleAssessmentComplete = (assessment: Record<string, unknown>) => {
+    setAssessmentData(assessment);
     setActiveTab('assessment');
     
     // In a real application, you would analyze the data and generate a real assessment result
-    console.log('Assessment data submitted:', data);
+    console.log('Assessment data submitted:', assessment);
   };
 
   if (!isClient) {
@@ -231,13 +232,13 @@ export default function DPIADemoPage() {
                 }]}
                 answers={assessmentData || {}}
                 onAnswerChange={(questionId, value) => {
-                  setAssessmentData((prev: any) => ({
+                  setAssessmentData((prev: Record<string, unknown>) => ({
                     ...prev,
                     [questionId]: value
                   }));
                 }}
                 currentSectionIndex={0}
-                onNextSection={() => handleSubmitAssessment(assessmentData)}
+                onNextSection={() => handleAssessmentComplete(assessmentData)}
                 submitButtonText="Submit Assessment"
               />
             </CardContent>

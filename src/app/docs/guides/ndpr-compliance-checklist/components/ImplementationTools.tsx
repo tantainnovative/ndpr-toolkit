@@ -9,7 +9,7 @@ export default function ImplementationTools() {
       <h2 className="text-2xl font-bold mb-4">Implementation Tools in the NDPR Toolkit</h2>
       <p className="mb-4">
         The NDPR Toolkit provides a comprehensive set of components and utilities to help you implement 
-        NDPR-compliant features in your web applications. Here's how the toolkit can help you address 
+        NDPR-compliant features in your web applications. Here&apos;s how the toolkit can help you address 
         key compliance requirements:
       </p>
       

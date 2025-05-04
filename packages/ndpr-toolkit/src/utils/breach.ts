@@ -20,7 +20,7 @@ export function calculateBreachSeverity(
   if (assessment) {
     const { riskLevel, risksToRightsAndFreedoms, highRisksToRightsAndFreedoms } = assessment;
     
-    // Under NDPR, notification is required if there's a risk to rights and freedoms
+    // Under NDPR, notification is required if tHere&apos;s a risk to rights and freedoms
     const notificationRequired = risksToRightsAndFreedoms;
     
     // Urgent notification is needed for high risks

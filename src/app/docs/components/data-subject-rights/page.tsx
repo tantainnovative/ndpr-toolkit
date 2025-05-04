@@ -50,7 +50,7 @@ export default function DataSubjectRightsDocs() {
           <pre><code>npm install @tantainnovative/ndpr-toolkit</code></pre>
         </div>
         <p>
-          Or if you're using yarn:
+          Or if you&apos;re using yarn:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>yarn add @tantainnovative/ndpr-toolkit</code></pre>
@@ -139,7 +139,7 @@ export default function DataSubjectRightsDocs() {
       <section id="usage" className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Usage</h2>
         <p className="mb-4">
-          Here's a complete example of how to implement the Data Subject Rights system in your application:
+          Here&apos;s a complete example of how to implement the Data Subject Rights system in your application:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>{`import { useState, useEffect } from 'react';
@@ -272,19 +272,19 @@ function DSRPortal() {
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">title</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">string</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">'Submit a Data Subject Rights Request'</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">&apos;Submit a Data Subject Rights Request&apos;</td>
                 <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Form title</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">description</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">string</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">'Use this form to submit a request...'</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">&apos;Use this form to submit a request...&apos;</td>
                 <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Form description</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">submitButtonText</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">string</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">'Submit Request'</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">&apos;Submit Request&apos;</td>
                 <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Text for the submit button</td>
               </tr>
             </tbody>
@@ -447,7 +447,7 @@ const accessRequests = filterRequestsByType('access');`}</code></pre>
             <strong>Response Timeframe:</strong> The NDPR requires organizations to respond to DSARs within 30 days. Ensure your process allows for timely responses.
           </li>
           <li>
-            <strong>Complete Responses:</strong> Provide complete information in response to access requests, including what data you hold, how it's used, who it's shared with, and its source.
+            <strong>Complete Responses:</strong> Provide complete information in response to access requests, including what data you hold, howit&apos;s used, whoit&apos;s shared with, and its source.
           </li>
           <li>
             <strong>Record Keeping:</strong> Maintain records of all DSARs and your responses to them. The DSRDashboard component helps with this.

@@ -53,7 +53,7 @@ export default function PrivacyPolicyGeneratorDocs() {
 npm install @tantainnovative/ndpr-toolkit --legacy-peer-deps</code></pre>
         </div>
         <p>
-          Or if you're using yarn:
+          Or if you&apos;re using yarn:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>yarn add @tantainnovative/ndpr-toolkit</code></pre>
@@ -297,7 +297,7 @@ console.log(result.sectionTexts.contact);`}</code></pre>
       <section id="usage" className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Usage</h2>
         <p className="mb-4">
-          Here's a complete example of how to implement the Privacy Policy Generator in your application:
+          Here&apos;s a complete example of how to implement the Privacy Policy Generator in your application:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>{`import { useState } from 'react';

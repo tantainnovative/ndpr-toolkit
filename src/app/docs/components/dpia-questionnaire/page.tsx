@@ -52,7 +52,7 @@ export default function DPIAQuestionnaireDocs() {
 npm install @tantainnovative/ndpr-toolkit --legacy-peer-deps</code></pre>
         </div>
         <p>
-          Or if you're using yarn:
+          Or if you&apos;re using yarn:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>yarn add @tantainnovative/ndpr-toolkit</code></pre>

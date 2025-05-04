@@ -13,7 +13,7 @@ export default function ConsentManagementDocs() {
     >
       <div className="flex mb-6 space-x-2">
         <Button asChild variant="outline" size="sm">
-          <Link href="/demo/consent">
+          <Link href="/gdrp-demos/consent">
             View Demo
           </Link>
         </Button>
@@ -49,7 +49,7 @@ export default function ConsentManagementDocs() {
           <pre><code>npm install @tantainnovative/ndpr-toolkit</code></pre>
         </div>
         <p>
-          Or if you're using yarn:
+          Or if you&apos;re using yarn:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>yarn add @tantainnovative/ndpr-toolkit</code></pre>
@@ -229,7 +229,7 @@ function ConsentStorageExample() {
       <section id="usage" className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Usage</h2>
         <p className="mb-4">
-          Here's a complete example of how to implement the consent management system in your application:
+          Here&apos;s a complete example of how to implement the consent management system in your application:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>{`import { useState, useEffect } from 'react';
@@ -378,29 +378,29 @@ function AnalyticsComponent() {
               </tr>
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">position</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">'top' | 'bottom'</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">'bottom'</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">&apos;top&apos; | &apos;bottom&apos;</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">&apos;bottom&apos;</td>
                 <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Position of the banner on the page</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">title</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">string</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">'Cookie Consent'</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">&apos;Cookie Consent&apos;</td>
                 <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Title displayed on the banner</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">description</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">string</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">'We use cookies...'</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">&apos;We use cookies...&apos;</td>
                 <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Description text explaining the purpose of cookies</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">showPreferences</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">boolean</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">true</td>
-                <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Whether to show the "Preferences" button</td>
+                <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Whether to show the &quot;Preferences&quot; button</td>
               </tr>
-              <tr>
+              <tr>  
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">privacyPolicyUrl</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">string</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">undefined</td>
@@ -506,10 +506,10 @@ function AnalyticsComponent() {
         <h2 className="text-2xl font-bold mb-4">Best Practices</h2>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Clear Language:</strong> Use clear, plain language to explain what each type of cookie does and why you're collecting the data.
+            <strong>Clear Language:</strong> Use clear, plain language to explain what each type of cookie does and why you&apos;re collecting the data.
           </li>
           <li>
-            <strong>No Pre-selected Options:</strong> Don't pre-select non-essential cookies. The NDPR requires that consent is freely given and pre-selected checkboxes don't constitute valid consent.
+            <strong>No Pre-selected Options:</strong> Don&apos;t pre-select non-essential cookies. The NDPR requires that consent is freely given and pre-selected checkboxes don&apos;t constitute valid consent.
           </li>
           <li>
             <strong>Easy Access to Preferences:</strong> Make it easy for users to access and update their consent preferences at any time.

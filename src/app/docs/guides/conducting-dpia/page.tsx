@@ -52,7 +52,7 @@ export default function ConductingDPIAGuide() {
         <h2 className="text-2xl font-bold mb-4">The DPIA Process</h2>
         <p className="mb-4">
           The NDPR Toolkit provides a structured approach to conducting DPIAs through the DPIAQuestionnaire component. 
-          Here's how to implement a complete DPIA process in your organization:
+          Here&apos;s how to implement a complete DPIA process in your organization:
         </p>
         
         <div className="relative border-l-2 border-blue-500 pl-8 pb-8 space-y-10">
@@ -69,7 +69,7 @@ export default function ConductingDPIAGuide() {
               <h4 className="font-medium mb-2">Implementation Tip</h4>
               <p className="text-sm">
                 Create a simple screening questionnaire to help project managers determine if a DPIA is needed. 
-                This can be implemented using the NDPR Toolkit's form components.
+                This can be implemented using the NDPR Toolkit&apos;s form components.
               </p>
             </div>
           </div>
@@ -154,7 +154,7 @@ function ProcessingDescriptionStep() {
             </div>
             <h3 className="text-xl font-bold">Identify and Assess Risks</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              Identify potential risks to individuals' rights and freedoms. For each risk, assess:
+              Identify potential risks to individuals&apos; rights and freedoms. For each risk, assess:
             </p>
             <ul className="list-disc pl-6 mt-2 text-gray-600 dark:text-gray-300">
               <li>The likelihood of the risk occurring (low, medium, high)</li>
@@ -309,7 +309,7 @@ function GenerateDPIAReport({ dpiaData }) {
       <section id="complete-implementation" className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Complete Implementation Example</h2>
         <p className="mb-4">
-          Here's a complete example of how to implement a multi-step DPIA process using the NDPR Toolkit:
+          Here&apos;s a complete example of how to implement a multi-step DPIA process using the NDPR Toolkit:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>{`import { useState } from 'react';
@@ -495,7 +495,7 @@ function DPIAProcess() {
             <CardContent className="p-6">
               <h3 className="font-bold text-lg mb-2">Be Thorough</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Don't rush the DPIA process. Take the time to thoroughly identify and assess all potential risks. 
+                don&apos;t rush the DPIA process. Take the time to thoroughly identify and assess all potential risks. 
                 A comprehensive DPIA is more effective at protecting both individuals and your organization.
               </p>
             </CardContent>

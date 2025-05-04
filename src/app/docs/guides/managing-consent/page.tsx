@@ -39,7 +39,7 @@ export default function ManagingConsentGuide() {
           <ul className="list-disc pl-6 mt-2 text-blue-700 dark:text-blue-300 text-sm">
             <li><strong>Freely given:</strong> Data subjects must have a genuine choice and control</li>
             <li><strong>Specific:</strong> Consent must be granular for different types of processing</li>
-            <li><strong>Informed:</strong> Data subjects must understand what they're consenting to</li>
+            <li><strong>Informed:</strong> Data subjects must understand what they&apos;re consenting to</li>
             <li><strong>Unambiguous:</strong> Consent must be given through a clear affirmative action</li>
             <li><strong>Withdrawable:</strong> Data subjects must be able to withdraw consent easily</li>
           </ul>
@@ -61,7 +61,7 @@ export default function ManagingConsentGuide() {
             <h3 className="text-xl font-bold">Consent Collection</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               The first step is collecting consent from data subjects. This typically happens when users first visit your website 
-              or when they sign up for your service. The NDPR Toolkit's ConsentBanner component is designed for this purpose.
+              or when they sign up for your service. The NDPR Toolkit&apos;s ConsentBanner component is designed for this purpose.
             </p>
             <div className="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
               <h4 className="font-medium mb-2">Code Example</h4>
@@ -237,7 +237,7 @@ function MarketingComponent() {
             </div>
             <h3 className="text-xl font-bold">Consent Management</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              Data subjects must be able to view and update their consent preferences at any time. The NDPR Toolkit's 
+              Data subjects must be able to view and update their consent preferences at any time. The NDPR Toolkit&apos;s 
               ConsentManager component provides a user interface for managing consent preferences.
             </p>
             <div className="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
@@ -377,7 +377,7 @@ consentRecorder.getEventHistory(userId).then(history => {
             <div className="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
               <h4 className="font-medium mb-2">Implementation Tip</h4>
               <p className="text-sm">
-                When a user withdraws consent, you must stop processing their data for the purposes they've withdrawn consent for. 
+                When a user withdraws consent, you must stop processing their data for the purposes they&apos;ve withdrawn consent for. 
                 This may include deleting data or disabling certain features. Make sure your application architecture supports 
                 this granular control.
               </p>
@@ -389,7 +389,7 @@ consentRecorder.getEventHistory(userId).then(history => {
       <section id="complete-implementation" className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Complete Implementation Example</h2>
         <p className="mb-4">
-          Here's a complete example of how to implement a consent management system using the NDPR Toolkit:
+          Here&apos;s a complete example of how to implement a consent management system using the NDPR Toolkit:
         </p>
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
           <pre><code>{`import { useState, useEffect } from 'react';
@@ -483,7 +483,7 @@ function App() {
       version: '1.0'
     });
     
-    // Hide the banner if it's showing
+    // Hide the banner ifit&apos;s showing
     setShowBanner(false);
   };
   
@@ -586,7 +586,7 @@ function HomePage() {
       {hasPersonalizationConsent ? (
         <div>
           <h3>Personalized Content</h3>
-          <p>Here's some content tailored just for you!</p>
+          <p>Here&apos;s some content tailored just for you!</p>
         </div>
       ) : (
         <div>
@@ -624,7 +624,7 @@ function HomePage() {
             <CardContent className="p-6">
               <h3 className="font-bold text-lg mb-2">Clear Language</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Use clear, plain language to explain what data you're collecting, why you're collecting it, and how it will be used. 
+                Use clear, plain language to explain what data you&apos;re collecting, why you&apos;re collecting it, and how it will be used. 
                 Avoid legal jargon that may confuse users.
               </p>
             </CardContent>
@@ -634,7 +634,7 @@ function HomePage() {
             <CardContent className="p-6">
               <h3 className="font-bold text-lg mb-2">Granular Consent</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Provide granular consent options for different types of processing. Don't bundle multiple purposes into a single 
+                Provide granular consent options for different types of processing. don&apos;t bundle multiple purposes into a single 
                 consent option. This allows users to consent to some types of processing but not others.
               </p>
             </CardContent>
@@ -677,27 +677,27 @@ function HomePage() {
         <ul className="list-disc pl-6 space-y-2">
           <li>
             <strong>Cookie Walls:</strong> Blocking access to your website unless users accept all cookies is generally not 
-            considered valid consent under the NDPR, as it doesn't give users a genuine choice.
+            considered valid consent under the NDPR, as it doesn&apos;t give users a genuine choice.
           </li>
           <li>
             <strong>Bundling Consent:</strong> Requiring users to consent to multiple unrelated purposes as a package deal 
-            is not compliant with the NDPR's requirement for specific consent.
+            is not compliant with the NDPR&apos;s requirement for specific consent.
           </li>
           <li>
             <strong>Ignoring Consent:</strong> Loading tracking scripts or cookies before obtaining consent is a common 
-            mistake that violates the NDPR.
+            mistake that violates the NDPR&apos;s requirement for valid consent.
           </li>
           <li>
             <strong>Unclear Language:</strong> Using vague or technical language that users may not understand undermines 
-            the "informed" aspect of valid consent.
+            the &apos;informed&apos; aspect of valid consent.
           </li>
           <li>
             <strong>Difficult Withdrawal:</strong> Making it difficult for users to withdraw consent, such as by hiding 
-            the option in a complex settings menu, is not compliant with the NDPR.
+            the option in a complex settings menu, is not compliant with the NDPR&apos;s requirement for withdrawable consent.
           </li>
           <li>
             <strong>Inadequate Records:</strong> Failing to maintain adequate records of consent can make it difficult to 
-            demonstrate compliance with the NDPR.
+            demonstrate compliance with the NDPR&apos;s requirement for record-keeping.
           </li>
         </ul>
       </section>

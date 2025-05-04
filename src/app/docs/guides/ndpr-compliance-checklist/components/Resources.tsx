@@ -73,7 +73,7 @@ export default function Resources() {
         <h3 className="text-xl font-bold mb-3">Compliance Roadmap</h3>
         <p className="mb-3">
           Achieving NDPR compliance can seem daunting, but breaking it down into manageable steps can make the process more approachable. 
-          Here's a suggested roadmap for your compliance journey:
+          Here&apos;s a suggested roadmap for your compliance journey:
         </p>
         
         <div className="relative border-l-2 border-blue-500 pl-8 pb-8 space-y-8">
@@ -128,7 +128,7 @@ export default function Resources() {
             </div>
             <h4 className="text-lg font-bold">Training</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              Train staff on data protection principles, the NDPR requirements, and your organization's specific 
+              Train staff on data protection principles, the NDPR requirements, and your organization&apos;s specific 
               policies and procedures. Ensure that everyone understands their role in maintaining compliance.
             </p>
           </div>
@@ -151,7 +151,7 @@ export default function Resources() {
         <p className="text-blue-700 dark:text-blue-300 text-sm">
           If you need additional help with NDPR compliance, consider consulting with a data protection professional or legal expert 
           who specializes in Nigerian data protection law. While the NDPR Toolkit provides valuable tools and guidance, 
-          professional advice can help ensure that your compliance program addresses your organization's specific needs and risks.
+          professional advice can help ensure that your compliance program addresses your organization&apos;s specific needs and risks.
         </p>
       </div>
     </section>

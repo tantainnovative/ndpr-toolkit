@@ -59,7 +59,7 @@ export default function FormField({
       )}
 
       <style jsx>{`
-        /* This ensures the error icon doesn't appear on elements that shouldn't have it */
+        /* This ensures the error icon doesn&apos;t appear on elements that shouldn't have it */
         .has-error > :global(textarea),
         .has-error > :global(input:not([type="checkbox"]):not([type="radio"])),
         .has-error > :global(select) {

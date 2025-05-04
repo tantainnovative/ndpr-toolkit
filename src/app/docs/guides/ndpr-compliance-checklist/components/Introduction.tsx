@@ -5,7 +5,7 @@ export default function Introduction() {
     <section id="introduction" className="mb-8">
       <h2 className="text-2xl font-bold mb-4">Introduction</h2>
       <p className="mb-4">
-        The Nigeria Data Protection Regulation (NDPR) is Nigeria's principal data protection legislation, issued by the 
+        The Nigeria Data Protection Regulation (NDPR) is Nigeria&apos;s principal data protection legislation, issued by the 
         National Information Technology Development Agency (NITDA) in January 2019. The NDPR aims to safeguard the rights 
         of natural persons to data privacy and establishes a framework for ensuring that organizations process personal 
         data in a fair, lawful, and transparent manner.

@@ -110,7 +110,7 @@ export default function DSRDemoPage() {
     setRequests(sampleRequests);
   }, []);
 
-  const handleSubmitRequest = (data: any) => {
+  const handleSubmitRequest = (data: Record<string, unknown>) => {
     console.log('Received form data:', data);
     
     // Calculate due date based on request type (30 days for access, 15 days for erasure, etc.)

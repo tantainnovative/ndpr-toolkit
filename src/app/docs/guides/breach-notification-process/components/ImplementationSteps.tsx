@@ -6,14 +6,14 @@ export default function ImplementationSteps() {
       <h2 className="text-2xl font-bold mb-4">Implementation Steps</h2>
       <p className="mb-4">
         Implementing a comprehensive breach notification process involves several key components from the NDPR Toolkit. 
-        Here's how to set up each part of the process:
+        Here&apos;s how to set up each part of the process:
       </p>
       
       <div className="space-y-8">
         <div>
           <h3 className="text-xl font-bold mb-3">1. Breach Detection and Reporting</h3>
           <p className="mb-3">
-            The first step is to implement a system for detecting and reporting potential data breaches. The NDPR Toolkit's 
+            The first step is to implement a system for detecting and reporting potential data breaches. The NDPR Toolkit&apos;s 
             BreachReportForm component provides a structured way for staff to report suspected breaches.
           </p>
           <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
@@ -319,8 +319,8 @@ function ReportGenerationPage({ breachData }) {
           <li>Regularly testing the breach response process through tabletop exercises or simulations</li>
         </ul>
         <p>
-          The NDPR Toolkit provides all the necessary components to implement this workflow, but it's important to 
-          adapt it to your organization's specific needs and integrate it with your existing systems.
+          The NDPR Toolkit provides all the necessary components to implement this workflow, but it&apos;s important to 
+          adapt it to your organization&apos;s specific needs and integrate it with your existing systems.
         </p>
       </div>
     </section>

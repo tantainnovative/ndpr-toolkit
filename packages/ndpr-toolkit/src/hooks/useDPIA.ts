@@ -287,7 +287,7 @@ export function useDPIA({
   // Check if the DPIA is complete
   const isComplete = (): boolean => {
     return sections.every((section, index) => {
-      // Temporarily set the current section to check if it's valid
+      // Temporarily set the current section to check ifit&apos;s valid
       setCurrentSectionIndex(index);
       const valid = isCurrentSectionValid();
       // Restore the current section

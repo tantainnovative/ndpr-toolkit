@@ -5,7 +5,7 @@ export default function ComplianceChecklist() {
     <section id="compliance-checklist" className="mb-8">
       <h2 className="text-2xl font-bold mb-4">NDPR Compliance Checklist</h2>
       <p className="mb-4">
-        Use this comprehensive checklist to assess your organization's compliance with the NDPR and identify areas that need attention.
+        Use this comprehensive checklist to assess your organization&apos;s compliance with the NDPR and identify areas that need attention.
         The checklist is organized by key compliance areas, with specific action items for each area.
       </p>
       

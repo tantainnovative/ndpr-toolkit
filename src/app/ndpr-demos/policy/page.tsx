@@ -18,17 +18,16 @@ import {
   PolicyVariable
 } from '@tantainnovative/ndpr-toolkit';
 import type { PolicyTemplate } from '@tantainnovative/ndpr-toolkit';
-import ReactMarkdown from 'react-markdown';
-
+  
 export default function PolicyDemoPage() {
   const [activeTab, setActiveTab] = useState<string>('generator');
   // Initialize with empty objects/arrays to prevent undefined errors
-  const [policyData, setPolicyData] = useState<any>({});
+  const [policyData, setPolicyData] = useState<Record<string, unknown>>({});
   const [generatedPolicy, setGeneratedPolicy] = useState<PolicySection[]>([]);
   const [policyVariables, setPolicyVariables] = useState<PolicyVariable[]>([]);
 
   // Helper: process conditional {{#if …}}…{{else}}…{{/if}} blocks
-  const processConditionalBlocks = (content: string, data: any): string => {
+  const processConditionalBlocks = (content: string, data: Record<string, unknown>): string => {
     if (!content || typeof content !== 'string') return '';
     if (!data || typeof data !== 'object') data = {};
     
@@ -63,8 +62,8 @@ export default function PolicyDemoPage() {
                 );
                 
                 return result ? ifContent : elseContent;
-              } catch (e) {
-                console.error('Error evaluating complex condition:', e);
+              } catch (error) {
+                console.error('Error evaluating complex condition:', error);
                 return elseContent;
               }
             }
@@ -88,7 +87,7 @@ export default function PolicyDemoPage() {
         .trim();
     } catch (error) {
       console.error('Error processing conditional blocks:', error);
-      return content; // Return original content if there's an error
+      return content; // Return original content if tHere&apos;s an error
     }
   };
 
@@ -158,7 +157,7 @@ export default function PolicyDemoPage() {
                         day: 'numeric'
                       });
                     }
-                  } catch (e) {
+                  } catch {
                     // Keep original value if date parsing fails
                   }
                 }
@@ -202,7 +201,7 @@ export default function PolicyDemoPage() {
   };
 
   // Called when PolicyGenerator emits data
-  const handleGeneratePolicy = (data: any) => {
+  const handleGeneratePolicy = (data: Record<string, unknown>) => {
     try {
       console.log('Policy generator data received:', data);
       
@@ -233,7 +232,7 @@ export default function PolicyDemoPage() {
     }
   };
 
-  // Handle policy edits - we'll need to implement this differently since PolicyPreview doesn't support direct section updates
+  // Handle policy edits - we'll need to implement this differently since PolicyPreview doesn&apos;t support direct section updates
   const handlePolicyEdit = () => {
     console.log('Policy edit requested');
     // In a real implementation, you might want to switch back to the generator tab or open an edit modal
@@ -257,7 +256,7 @@ export default function PolicyDemoPage() {
       },
       website: {
         name: 'Website URL',
-        description: "Your organization's website",
+        description: "Your organization&apos;s website",
         required: true,
         defaultValue: 'https://example.com',
       },
@@ -293,7 +292,7 @@ export default function PolicyDemoPage() {
       },
       industry: {
         name: 'Industry',
-        description: "Your organization's industry or sector",
+        description: "Your organization&apos;s industry or sector",
         required: true,
         defaultValue: 'Technology',
       },

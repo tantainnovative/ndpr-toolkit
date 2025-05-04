@@ -391,7 +391,7 @@ function AppContent() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-500 dark:text-gray-400 mb-4">
-                Manage data breach reporting, risk assessment, and notification within NDPR's 72-hour requirement.
+                Manage data breach reporting, risk assessment, and notification within NDPR&apos;s 72-hour requirement.
               </p>
               <ul className="list-disc pl-5 mb-4 text-sm">
                 <li>Breach reporting forms</li>
@@ -518,7 +518,7 @@ function AppContent() {
         <h2 className="text-2xl font-bold mb-6">NDPR Compliance</h2>
         <div className="prose prose-blue max-w-none dark:prose-invert">
           <p>
-            The Nigeria Data Protection Regulation (NDPR) is Nigeria's principal data protection legislation, issued by the 
+            The Nigeria Data Protection Regulation (NDPR) is Nigeria&apos;s principal data protection legislation, issued by the 
             National Information Technology Development Agency (NITDA) in January 2019. The NDPR aims to safeguard the rights 
             of natural persons to data privacy.
           </p>

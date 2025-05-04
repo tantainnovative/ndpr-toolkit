@@ -75,7 +75,7 @@ pnpm add @tantainnovative/ndpr-toolkit
 
 ### React 19 Compatibility
 
-If you're using React 19 and encounter peer dependency warnings with other packages in your project, you can use the `--legacy-peer-deps` flag:
+If you&apos;re using React 19 and encounter peer dependency warnings with other packages in your project, you can use the `--legacy-peer-deps` flag:
 
 ```bash
 npm install @tantainnovative/ndpr-toolkit --legacy-peer-deps

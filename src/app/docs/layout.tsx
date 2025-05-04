@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import metadata from './metadata';
 
 export { metadata };
