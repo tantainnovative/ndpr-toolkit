@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
-import { BreachReportForm, BreachRiskAssessment, BreachNotificationManager, BreachReport, RiskAssessment, NotificationRequirement } from '@tantainnovative/ndpr-toolkit';
+import { BreachReportForm, BreachRiskAssessment, BreachNotificationManager, BreachReport, RiskAssessment, RegulatoryReportGenerator } from '@tantainnovative/ndpr-toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
 
@@ -13,7 +12,23 @@ export default function BreachDemoPage() {
   const [isClient, setIsClient] = useState(false);
   const [breaches, setBreaches] = useState<BreachReport[]>([]);
   const [riskAssessments, setRiskAssessments] = useState<RiskAssessment[]>([]);
-  const [regulatoryNotifications, setRegulatoryNotifications] = useState<any[]>([]);
+  // Define interface based on documentation for regulatory notifications
+interface RegulatoryNotification {
+  id: string;
+  breachId: string;
+  sentAt: number;
+  method: 'email' | 'portal' | 'letter' | 'other';
+  referenceNumber?: string;
+  content: string;
+  attachments?: Array<{
+    id: string;
+    name: string;
+    type: string;
+    url: string;
+  }>;
+}
+
+  const [regulatoryNotifications, setRegulatoryNotifications] = useState<RegulatoryNotification[]>([]);
   const [selectedBreach, setSelectedBreach] = useState<BreachReport | null>(null);
   
   // This effect runs only on the client side after hydration
@@ -81,7 +96,20 @@ export default function BreachDemoPage() {
     setBreaches(sampleBreaches);
   }, []);
 
-  const handleSubmitBreach = (data: any) => {
+  const handleSubmitBreach = (data: { 
+    title: string; 
+    description: string; 
+    category?: string;
+    reporter?: { 
+      name?: string; 
+      email?: string; 
+      department?: string; 
+    };
+    affectedSystems?: string[];
+    dataTypes?: string[];
+    estimatedAffectedSubjects?: number;
+    initialActions?: string;
+  }) => {
     const newBreach: BreachReport = {
       id: uuidv4(),
       title: data.title,
@@ -123,6 +151,27 @@ export default function BreachDemoPage() {
     const breach = breaches.find((b) => b.id === breachId);
     setSelectedBreach(breach || null);
     setActiveTab('assessment');
+  };
+
+  // Add a function to handle regulatory notifications
+  const handleGenerateReport = (breachId: string) => {
+    if (!selectedBreach) return;
+    
+    // Create a sample regulatory notification based on the breach
+    const newNotification: RegulatoryNotification = {
+      id: uuidv4(),
+      breachId: breachId,
+      sentAt: Date.now(),
+      method: 'email',
+      content: `Notification regarding breach: ${selectedBreach.title}`,
+      referenceNumber: `REF-${Date.now().toString().substring(0, 8)}`
+    };
+    
+    // Add to notifications list
+    setRegulatoryNotifications(prev => [...prev, newNotification]);
+    
+    // Update breach status
+    handleUpdateBreach(breachId, { status: 'contained' }); // Using a valid status from the BreachReport type
   };
 
   if (!isClient) {
@@ -188,10 +237,14 @@ export default function BreachDemoPage() {
                   handleSelectBreach(breachId);
                   setActiveTab('assessment');
                 }}
-                onRequestNotification={(breachId) => {
+                onRequestNotification={(breachId: string) => {
                   handleSelectBreach(breachId);
-                  // In a real app, you would show a notification form here
-                  console.log('Notification requested for breach:', breachId);
+                  // Generate a regulatory notification
+                  setTimeout(() => {
+                    if (selectedBreach) {
+                      handleGenerateReport(breachId);
+                    }
+                  }, 500);
                 }}
                 title="Data Breach Register"
                 description="A record of all data breaches and security incidents affecting personal data."
@@ -213,10 +266,11 @@ export default function BreachDemoPage() {
             </CardHeader>
             <CardContent>
               {selectedBreach ? (
-                <BreachRiskAssessment
-                  breachData={selectedBreach}
-                  onComplete={(assessment: RiskAssessment) => {
-                    if (selectedBreach) {
+                <div className="space-y-8">
+                  <BreachRiskAssessment
+                    breachData={selectedBreach}
+                    onComplete={(assessment: RiskAssessment) => {
+                      if (selectedBreach) {
                       // Update the breach status based on the assessment
                       handleUpdateBreach(selectedBreach.id, {
                         status: assessment.riskLevel === 'critical' ? 'ongoing' : 'contained',
@@ -242,14 +296,31 @@ export default function BreachDemoPage() {
                         return [...filtered, newAssessment];
                       });
                     }
-                  }}
-                  title="Breach Risk Assessment"
-                  description="Assess the severity, impact, and required actions for this data breach."
-                  className=""
-                  buttonClassName=""
-                  showBreachSummary={true}
-                  showNotificationRequirements={true}
-                />
+                    }}
+                    title="Breach Risk Assessment"
+                    description="Assess the severity, impact, and required actions for this data breach."
+                    className=""
+                    buttonClassName=""
+                    showBreachSummary={true}
+                    showNotificationRequirements={true}
+                  />
+                  
+                  {/* Add Regulatory Report Generator component */}
+                  <div className="mt-8 pt-8 border-t border-gray-200">
+                    <h3 className="text-lg font-medium mb-4">Generate Regulatory Report</h3>
+                    <RegulatoryReportGenerator
+                      breachData={selectedBreach}
+                      organizationInfo={{
+                        name: 'Example Company Ltd.',
+                        address: '123 Main Street, Lagos, Nigeria',
+                        dpoName: 'John Doe',
+                        dpoEmail: 'dpo@example.com',
+                        dpoPhone: '+234 123 456 7890'
+                      }}
+                      onGenerate={() => handleGenerateReport(selectedBreach.id)}
+                    />
+                  </div>
+                </div>
               ) : (
                 <div className="p-4 text-center">
                   <p>No breach selected. Please select a breach from the Breach Register.</p>
