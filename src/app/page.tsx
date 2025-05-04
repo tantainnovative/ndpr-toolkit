@@ -122,11 +122,28 @@ export default function Home() {
                   asChild
                   className="rounded-lg shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all duration-200"
                 >
-                  <Link href="#demos" className="flex items-center">
+                  <Link href="/ndpr-demos" className="flex items-center">
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
-                    Explore Demos
+                    Live Demos
+                  </Link>
+                </Button>
+
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  asChild
+                  className="rounded-lg border-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
+                >
+                  <Link
+                    href="/docs"
+                    className="flex items-center"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    Documentation
                   </Link>
                 </Button>
 
@@ -157,17 +174,14 @@ export default function Home() {
                   <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold">DPA</div>
                   <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-bold">UI</div>
                 </div>
-                <span>Built for Nigerian developers with modern UI components</span>
+                <span>Built for Nigerian businesses with enterprise-ready components</span>
               </div>
               
               <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                <a href="https://ndprtoolkit.com.ng" target="_blank" rel="noopener noreferrer" className="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  <span className="mr-1">Visit</span>
-                  <span className="font-medium">ndprtoolkit.com.ng</span>
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                <div className="inline-flex items-center bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full">
+                  <span className="mr-1 text-blue-600 dark:text-blue-400">v1.0.1</span>
+                  <span className="px-1.5 py-0.5 text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 rounded-full ml-2">React 19 Compatible</span>
+                </div>
               </div>
             </div>
             
@@ -214,13 +228,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4 px-3 py-1 text-sm">
-              Key Features
+              Enterprise-Ready Components
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">
-              Simplify NDPR Compliance
+              Comprehensive NDPR Compliance
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300">
-              Our toolkit provides ready-to-use components to help Nigerian businesses achieve compliance with minimal development effort.
+              Our toolkit provides professional, customizable components to help Nigerian businesses implement NDPR compliance features with minimal development effort.
             </p>
           </div>
 
@@ -242,7 +256,7 @@ export default function Home() {
                         {feature.description}
                       </p>
                       <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400 font-medium">
-                        <span>Try Demo</span>
+                        <span>View Demo</span>
                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
@@ -302,13 +316,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 relative">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
             <div>
-              <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-                <span className="block">Ready to get started?</span>
-                <span className="block text-blue-200">Download the toolkit today.</span>
-              </h2>
-              <p className="mt-4 text-lg text-blue-100 max-w-md">
-                Join the growing community of developers using our toolkit to implement NDPR compliance features in their applications.
-              </p>
+                <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+                  <span className="block">Ready to implement NDPR compliance?</span>
+                  <span className="block text-blue-200">Start using the toolkit today.</span>
+                </h2>
+                <p className="mt-4 text-lg text-blue-100 max-w-md">
+                  Join the growing community of Nigerian businesses using our enterprise-ready toolkit to implement NDPR compliance features in their applications.
+                </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 
               
