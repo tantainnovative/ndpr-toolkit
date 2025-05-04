@@ -217,7 +217,7 @@ If you have any questions about this Privacy Policy, please contact us:
 \`;
 
 // Using the template with the generatePolicyText utility
-import { generatePolicyText } from 'ndpr-toolkit';
+import { generatePolicyText } from '@tantainnovative/ndpr-toolkit';
 
 const variables = {
   organizationName: 'Acme Corporation',
@@ -257,7 +257,7 @@ console.log(result.sectionTexts);`}</code></pre>
         </p>
         
         <div className="bg-gray-800 text-gray-200 p-4 rounded-md overflow-x-auto">
-          <pre><code>{`import { generatePolicyText, PolicySection } from 'ndpr-toolkit';
+          <pre><code>{`import { generatePolicyText, PolicySection } from '@tantainnovative/ndpr-toolkit';
 
 const policySections: PolicySection[] = [
   {
@@ -307,7 +307,7 @@ import {
   PolicyExport,
   generatePolicyText,
   PolicySection
-} from 'ndpr-toolkit';
+} from '@tantainnovative/ndpr-toolkit';
 
 // Define your policy templates
 const policyTemplates = [
