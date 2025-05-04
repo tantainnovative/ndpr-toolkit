@@ -14,7 +14,7 @@ export { BreachReportForm } from './components/breach/BreachReportForm';
 export { BreachRiskAssessment } from './components/breach/BreachRiskAssessment';
 export { BreachNotificationManager } from './components/breach/BreachNotificationManager';
 export { RegulatoryReportGenerator } from './components/breach/RegulatoryReportGenerator';
-export type { BreachReport, RiskAssessment, NotificationRequirement } from './types/breach';
+export type { BreachReport, RiskAssessment, NotificationRequirement, RegulatoryNotification } from './types/breach';
 export { PolicyGenerator } from './components/policy/PolicyGenerator';
 export { PolicyPreview } from './components/policy/PolicyPreview';
 export { PolicyExporter } from './components/policy/PolicyExporter';

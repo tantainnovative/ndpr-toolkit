@@ -21,38 +21,38 @@ The NDPR Toolkit is an enterprise-grade solution that provides a comprehensive s
 
 ## Key Features
 
-### 🔒 Privacy Policy Management
+### Privacy Policy Management
 
 - **PolicyGenerator**: Create customizable, NDPR-compliant privacy policies with an intuitive form interface
 - **PolicyPreview**: Display generated policies with professional formatting and section navigation
 - **PolicyExporter**: Export policies in multiple formats (PDF, HTML, Markdown) with compliance notices
 
-### 🍪 Consent Management
+### Consent Management
 
 - **ConsentBanner**: Implement cookie consent banners with customizable appearance and behavior
 - **ConsentManager**: Track and manage user consent preferences across your application
 - **ConsentStorage**: Securely store and retrieve consent records with built-in persistence
 
-### 👤 Data Subject Rights (DSR)
+### Data Subject Rights (DSR)
 
 - **DSRRequestForm**: Collect and validate data subject requests with comprehensive form validation
 - **DSRTracker**: Monitor the status and progress of data subject requests
 - **DSRDashboard**: Visualize and manage all data subject requests in one place
 
-### 📊 Data Protection Impact Assessment (DPIA)
+### Data Protection Impact Assessment (DPIA)
 
 - **DPIAQuestionnaire**: Guide users through the DPIA process with step-by-step questionnaires
 - **DPIAReport**: Generate comprehensive DPIA reports based on questionnaire responses
 - **StepIndicator**: Track progress through multi-step DPIA processes
 
-### ⚠️ Breach Notification
+### Breach Notification
 
 - **BreachReportForm**: Collect essential information about data breaches
 - **BreachRiskAssessment**: Evaluate the risk level of reported breaches
 - **RegulatoryReportGenerator**: Create NDPR-compliant breach notification reports
 - **BreachNotificationManager**: Manage the entire breach notification workflow
 
-### 🆕 Enterprise Features
+### Enterprise Features
 
 - **Advanced Conditional Logic**: Support for complex conditional blocks in policy templates
 - **Professional Formatting**: Enterprise-ready formatting for all exported documents
