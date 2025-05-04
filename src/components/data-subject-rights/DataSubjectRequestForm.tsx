@@ -406,7 +406,7 @@ export default function DataSubjectRequestForm({
           <Button
             type="submit"
             disabled={isSubmitting}
-            variant="primary"
+            variant="default"
           >
             {isSubmitting ? (
               <>

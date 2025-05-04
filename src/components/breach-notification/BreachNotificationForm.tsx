@@ -2,6 +2,11 @@
 
 import { useState } from 'react';
 import { BreachSeverity } from '@/types';
+import { Input } from '@/components/ui/Input';
+import { TextArea } from '@/components/ui/TextArea';
+import { Button } from '@/components/ui/Button';
+import { FormField } from '@/components/ui/FormField';
+import { Checkbox } from '@/components/ui/Checkbox';
 
 interface BreachNotificationFormProps {
   onSubmit: (data: {
@@ -105,12 +110,20 @@ export default function BreachNotificationForm({
     }
   };
 
-  const handleAddDataCategory = () => {
+  const handleAddDataCategory = (e?: React.MouseEvent) => {
+    // Prevent form submission if this is triggered by a button click
+    if (e) {
+      e.preventDefault();
+    }
+    
     if (newDataCategory.trim()) {
-      setFormData((prev) => ({
-        ...prev,
-        dataCategories: [...prev.dataCategories, newDataCategory.trim()],
-      }));
+      // Check if category already exists to avoid duplicates
+      if (!formData.dataCategories.includes(newDataCategory.trim())) {
+        setFormData((prev) => ({
+          ...prev,
+          dataCategories: [...prev.dataCategories, newDataCategory.trim()],
+        }));
+      }
       setNewDataCategory('');
       
       // Clear error when field is edited
@@ -124,7 +137,11 @@ export default function BreachNotificationForm({
     }
   };
 
-  const handleAddMitigationStep = () => {
+  const handleAddMitigationStep = (e?: React.MouseEvent) => {
+    // Prevent form submission if this is triggered by a button click
+    if (e) {
+      e.preventDefault();
+    }
     if (newMitigationStep.trim()) {
       setFormData((prev) => ({
         ...prev,
@@ -148,6 +165,18 @@ export default function BreachNotificationForm({
       ...prev,
       mitigationSteps: prev.mitigationSteps.filter((_, i) => i !== index),
     }));
+  };
+
+  // Handle key press for adding data category and mitigation steps
+  const handleKeyPress = (e: React.KeyboardEvent, type: 'category' | 'mitigation') => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (type === 'category') {
+        handleAddDataCategory();
+      } else {
+        handleAddMitigationStep();
+      }
+    }
   };
 
   const validateForm = () => {
@@ -214,189 +243,181 @@ export default function BreachNotificationForm({
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 shadow rounded-lg p-6 ${className}`}>
-      <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
-        Data Breach Notification Form
-      </h2>
-      
+    <div className={`bg-white dark:bg-gray-800 shadow-sm rounded-lg border border-gray-200 dark:border-gray-700 p-6 ${className}`}>
+      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Data Breach Notification Form</h3>
+
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Breach Title
-          </label>
-          <input
-            type="text"
+        <FormField
+          id="title"
+          label="Breach Title"
+          required
+          error={errors.title}
+        >
+          <Input
             id="title"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
-              errors.title
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500'
-            } dark:bg-gray-700 dark:text-white`}
-            placeholder="Brief title describing the breach"
+            placeholder="Enter title describing the breach"
           />
-          {errors.title && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title}</p>
-          )}
-        </div>
-        
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Breach Description
-          </label>
-          <textarea
+        </FormField>
+
+        <FormField
+          id="description"
+          label="Breach Description"
+          required
+          error={errors.description}
+        >
+          <TextArea
             id="description"
             name="description"
-            rows={3}
             value={formData.description}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
-              errors.description
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500'
-            } dark:bg-gray-700 dark:text-white`}
+            rows={4}
             placeholder="Detailed description of what happened, how it happened, and the potential impact"
           />
-          {errors.description && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.description}</p>
-          )}
-        </div>
-        
+        </FormField>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="discoveryDate" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Date of Discovery
-            </label>
-            <input
+          <FormField
+            id="discoveryDate"
+            label="Date of Discovery"
+            required
+            error={errors.discoveryDate}
+          >
+            <Input
               type="date"
               id="discoveryDate"
               name="discoveryDate"
               value={formData.discoveryDate}
               onChange={handleChange}
-              className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
-                errors.discoveryDate
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500'
-              } dark:bg-gray-700 dark:text-white`}
+              max={new Date().toISOString().split('T')[0]}
             />
-            {errors.discoveryDate && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.discoveryDate}</p>
-            )}
-          </div>
-          
-          <div>
-            <label htmlFor="affectedDataSubjects" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Number of Affected Data Subjects
-            </label>
-            <input
+          </FormField>
+
+          <FormField
+            id="affectedDataSubjects"
+            label="Number of Affected Data Subjects"
+            required
+            error={errors.affectedDataSubjects}
+          >
+            <Input
               type="number"
               id="affectedDataSubjects"
               name="affectedDataSubjects"
-              min="1"
               value={formData.affectedDataSubjects}
               onChange={handleChange}
-              className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
-                errors.affectedDataSubjects
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500'
-              } dark:bg-gray-700 dark:text-white`}
+              min={0}
             />
-            {errors.affectedDataSubjects && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.affectedDataSubjects}</p>
-            )}
-          </div>
+          </FormField>
         </div>
-        
-        <div>
-          <label htmlFor="severity" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Breach Severity
-          </label>
+
+        <FormField
+          id="severity"
+          label="Breach Severity"
+          required
+          error={errors.severity}
+        >
           <select
             id="severity"
             name="severity"
             value={formData.severity}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+            className="block w-full px-3 py-2 text-base border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400"
           >
             <option value="low">Low - Minimal impact on data subjects</option>
             <option value="medium">Medium - Moderate impact on data subjects</option>
             <option value="high">High - Significant impact on data subjects</option>
             <option value="critical">Critical - Severe impact on data subjects</option>
           </select>
-        </div>
-        
-        <div>
-          <span className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Categories of Data Involved
-          </span>
-          {errors.dataCategories && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.dataCategories}</p>
-          )}
-          
+        </FormField>
+
+        <FormField
+          id="dataCategories"
+          label="Categories of Data Involved"
+          required
+          error={errors.dataCategories}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-            {defaultDataCategories.map((category) => (
-              <div key={category} className="flex items-center">
-                <input
-                  id={`category-${category}`}
-                  type="checkbox"
-                  checked={formData.dataCategories.includes(category)}
-                  onChange={() => handleDataCategoryToggle(category)}
-                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                />
-                <label htmlFor={`category-${category}`} className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-                  {category}
-                </label>
+            {formData.dataCategories.length > 0 && formData.dataCategories.filter(cat => !defaultDataCategories.includes(cat)).length > 0 && (
+              <div className="col-span-2 mb-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                <h4 className="text-sm font-medium mb-1">Added Categories:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {formData.dataCategories
+                    .filter(cat => !defaultDataCategories.includes(cat))
+                    .map((category, index) => (
+                      <span key={index} className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                        {category}
+                        <button 
+                          type="button" 
+                          className="ml-1 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                          onClick={() => {
+                            setFormData(prev => ({
+                              ...prev,
+                              dataCategories: prev.dataCategories.filter(c => c !== category)
+                            }));
+                          }}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                </div>
               </div>
+            )}
+            {defaultDataCategories.map((category) => (
+              <Checkbox
+                key={category}
+                id={`category-${category}`}
+                label={category}
+                checked={formData.dataCategories.includes(category)}
+                onChange={() => handleDataCategoryToggle(category)}
+              />
             ))}
           </div>
           
-          <div className="mt-3">
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                id="newDataCategory"
-                value={newDataCategory}
-                onChange={(e) => setNewDataCategory(e.target.value)}
-                placeholder="Add other data category"
-                className="flex-1 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
-              />
-              <button
-                type="button"
-                onClick={handleAddDataCategory}
-                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Add
-              </button>
-            </div>
+          <div className="flex space-x-2 mt-4">
+            <Input
+              type="text"
+              id="newDataCategory"
+              value={newDataCategory}
+              onChange={(e) => setNewDataCategory(e.target.value)}
+              onKeyPress={(e) => handleKeyPress(e, 'category')}
+              placeholder="Add other data category"
+              className="flex-1"
+            />
+            <Button
+              type="button"
+              onClick={(e) => handleAddDataCategory(e)}
+              size="sm"
+            >
+              Add
+            </Button>
           </div>
-        </div>
-        
-        <div>
-          <span className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Mitigation Steps Taken
-          </span>
-          {errors.mitigationSteps && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.mitigationSteps}</p>
-          )}
-          
+        </FormField>
+
+        <FormField
+          id="mitigationSteps"
+          label="Mitigation Steps Taken"
+          error={errors.mitigationSteps}
+        >
           <div className="flex space-x-2 mb-2">
-            <input
+            <Input
               type="text"
               id="newMitigationStep"
               value={newMitigationStep}
               onChange={(e) => setNewMitigationStep(e.target.value)}
+              onKeyPress={(e) => handleKeyPress(e, 'mitigation')}
               placeholder="e.g., Changed all passwords, Patched vulnerability"
-              className="flex-1 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+              className="flex-1"
             />
-            <button
+            <Button
               type="button"
-              onClick={handleAddMitigationStep}
-              className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              onClick={(e) => handleAddMitigationStep(e)}
+              size="sm"
             >
               Add
-            </button>
+            </Button>
           </div>
           
           {formData.mitigationSteps.length > 0 && (
@@ -404,47 +425,37 @@ export default function BreachNotificationForm({
               {formData.mitigationSteps.map((step, index) => (
                 <li key={index} className="flex items-center justify-between bg-gray-50 dark:bg-gray-700 p-2 rounded">
                   <span className="text-sm text-gray-700 dark:text-gray-300">{step}</span>
-                  <button
+                  <Button
                     type="button"
                     onClick={() => handleRemoveMitigationStep(index)}
+                    variant="ghost"
+                    size="sm"
                     className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
                   >
                     Remove
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>
           )}
-        </div>
+        </FormField>
         
         <div className="space-y-4">
-          <div className="flex items-center">
-            <input
-              id="reportedToAuthorities"
-              name="reportedToAuthorities"
-              type="checkbox"
-              checked={formData.reportedToAuthorities}
-              onChange={handleChange}
-              className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-            />
-            <label htmlFor="reportedToAuthorities" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              Reported to Nigerian Data Protection Commission (NDPC)
-            </label>
-          </div>
+          <Checkbox
+            id="reportedToAuthorities"
+            name="reportedToAuthorities"
+            checked={formData.reportedToAuthorities}
+            onChange={handleChange}
+            label="Reported to Nigerian Data Protection Commission (NDPC)"
+          />
           
-          <div className="flex items-center">
-            <input
-              id="reportedToDataSubjects"
-              name="reportedToDataSubjects"
-              type="checkbox"
-              checked={formData.reportedToDataSubjects}
-              onChange={handleChange}
-              className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-            />
-            <label htmlFor="reportedToDataSubjects" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              Reported to affected data subjects
-            </label>
-          </div>
+          <Checkbox
+            id="reportedToDataSubjects"
+            name="reportedToDataSubjects"
+            checked={formData.reportedToDataSubjects}
+            onChange={handleChange}
+            label="Reported to affected data subjects"
+          />
         </div>
         
         {errors.submit && (
@@ -454,13 +465,13 @@ export default function BreachNotificationForm({
         )}
         
         <div className="flex justify-end">
-          <button
+          <Button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            variant="default"
           >
             {isSubmitting ? 'Submitting...' : 'Submit Breach Notification'}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

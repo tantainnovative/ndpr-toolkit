@@ -228,7 +228,7 @@ For more information about our NDPR and DPA compliance program, please contact o
             )}
             
             <Button
-              variant="primary"
+              variant="default"
               size="sm"
               disabled={!selectedTemplate}
               onClick={handleAddTemplateSection}
@@ -273,7 +273,7 @@ For more information about our NDPR and DPA compliance program, please contact o
             </FormField>
             
             <Button
-              variant="primary"
+              variant="default"
               size="sm"
               onClick={handleAddCustomSection}
             >
@@ -300,9 +300,10 @@ For more information about our NDPR and DPA compliance program, please contact o
                     <div className="flex items-center justify-between mb-2">
                       <h5 className="font-medium text-gray-900 dark:text-white">{section.title}</h5>
                       <Button
-                        variant="danger"
-                        size="xs"
+                        variant="destructive"
+                        size="sm"
                         onClick={() => onRemoveCustomSection(index)}
+                        className="text-red-500 hover:text-red-700"
                       >
                         Remove
                       </Button>
@@ -315,7 +316,7 @@ For more information about our NDPR and DPA compliance program, please contact o
                     {section.content.length > 200 && (
                       <Button
                         variant="link"
-                        size="xs"
+                        size="sm"
                         onClick={() => alert(section.content)}
                         className="mt-2 p-0"
                       >
