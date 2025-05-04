@@ -1,37 +1,76 @@
 # NDPR Toolkit
 
-A comprehensive toolkit for implementing NDPR-compliant features in web applications, aligned with the Nigerian Data Protection Regulation (NDPR) and Data Protection Act (DPA).
+<div align="center">
+
+![NDPR Toolkit Logo](https://via.placeholder.com/200x200?text=NDPR+Toolkit)
+
+A comprehensive enterprise solution for implementing NDPR-compliant features in web applications, aligned with the Nigerian Data Protection Regulation (NDPR) and Data Protection Act (DPA).
+
+[![npm version](https://img.shields.io/npm/v/@tantainnovative/ndpr-toolkit.svg)](https://www.npmjs.com/package/@tantainnovative/ndpr-toolkit)
+[![license](https://img.shields.io/npm/l/@tantainnovative/ndpr-toolkit.svg)](https://github.com/tantainnovative/ndpr-toolkit/blob/main/LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9%2B-blue)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.0%2B-blue)](https://reactjs.org/)
+
+</div>
 
 ## Overview
 
-The NDPR Toolkit provides a set of React components, hooks, and utilities to help Nigerian businesses implement NDPR-compliant features in their web applications with minimal development effort. This toolkit is designed to be flexible, customizable, and easy to integrate into existing applications.
-
-[![npm version](https://img.shields.io/npm/v/ndpr-toolkit.svg)](https://www.npmjs.com/package/ndpr-toolkit)
-[![license](https://img.shields.io/npm/l/ndpr-toolkit.svg)](https://github.com/tantainnovative/ndpr-toolkit/blob/main/LICENSE)
+The NDPR Toolkit is an enterprise-grade solution that provides a comprehensive set of React components, hooks, and utilities to help organizations implement NDPR-compliant features in their web applications with minimal development effort. Designed by compliance experts and developers, this toolkit offers a complete solution for privacy policy management, consent handling, data subject rights, breach notification, and data protection impact assessments.
 
 > **NDPR Toolkit is actively maintained and regularly updated to ensure compliance with the latest Nigerian data protection regulations.**
 
-## Features
+## Key Features
 
-- **Consent Management**: Components for collecting, storing, and managing user consent in compliance with NDPR requirements
-- **Data Subject Rights Portal**: Complete system for handling data subject access requests and other rights
-- **DPIA Questionnaire**: Interactive questionnaire for conducting Data Protection Impact Assessments
-- **Breach Notification System**: Comprehensive tools for managing, assessing, and reporting data breaches within required timeframes
-- **Privacy Policy Generator**: Customizable tool for creating NDPR-compliant privacy policies with variable support
+### 🔒 Privacy Policy Management
 
-### 🆕 Latest Features
+- **PolicyGenerator**: Create customizable, NDPR-compliant privacy policies with an intuitive form interface
+- **PolicyPreview**: Display generated policies with professional formatting and section navigation
+- **PolicyExporter**: Export policies in multiple formats (PDF, HTML, Markdown) with compliance notices
 
-- **Variable Support in Privacy Policies**: Create dynamic privacy policies with variable placeholders that can be easily updated when your organization information changes
-- **Enhanced DSR Types**: Improved type definitions for Data Subject Requests with standardized enums for request types and statuses
-- **ConsentStorage Component**: A flexible component for handling the storage and retrieval of consent settings with support for multiple storage mechanisms
-- **Comprehensive Documentation**: Detailed API references for all components and utilities
+### 🍪 Consent Management
+
+- **ConsentBanner**: Implement cookie consent banners with customizable appearance and behavior
+- **ConsentManager**: Track and manage user consent preferences across your application
+- **ConsentStorage**: Securely store and retrieve consent records with built-in persistence
+
+### 👤 Data Subject Rights (DSR)
+
+- **DSRRequestForm**: Collect and validate data subject requests with comprehensive form validation
+- **DSRTracker**: Monitor the status and progress of data subject requests
+- **DSRDashboard**: Visualize and manage all data subject requests in one place
+
+### 📊 Data Protection Impact Assessment (DPIA)
+
+- **DPIAQuestionnaire**: Guide users through the DPIA process with step-by-step questionnaires
+- **DPIAReport**: Generate comprehensive DPIA reports based on questionnaire responses
+- **StepIndicator**: Track progress through multi-step DPIA processes
+
+### ⚠️ Breach Notification
+
+- **BreachReportForm**: Collect essential information about data breaches
+- **BreachRiskAssessment**: Evaluate the risk level of reported breaches
+- **RegulatoryReportGenerator**: Create NDPR-compliant breach notification reports
+- **BreachNotificationManager**: Manage the entire breach notification workflow
+
+### 🆕 Enterprise Features
+
+- **Advanced Conditional Logic**: Support for complex conditional blocks in policy templates
+- **Professional Formatting**: Enterprise-ready formatting for all exported documents
+- **Comprehensive Type System**: Full TypeScript support with detailed interfaces and type definitions
+- **Modular Architecture**: Use only the components you need with tree-shakable imports
+- **Accessibility**: WCAG 2.1 AA compliant components for inclusive user experiences
 
 ## Installation
 
 ```bash
-npm install ndpr-toolkit
-# or
-yarn add ndpr-toolkit
+# Using npm
+npm install @tantainnovative/ndpr-toolkit
+
+# Using yarn
+yarn add @tantainnovative/ndpr-toolkit
+
+# Using pnpm
+pnpm add @tantainnovative/ndpr-toolkit
 ```
 
 ## Quick Start
@@ -39,7 +78,7 @@ yarn add ndpr-toolkit
 ### Consent Management
 
 ```jsx
-import { ConsentBanner, ConsentManager, ConsentStorage, useConsent } from 'ndpr-toolkit';
+import { ConsentBanner, ConsentManager, ConsentStorage, useConsent } from '@tantainnovative/ndpr-toolkit';
 
 function MyApp() {
   return (
@@ -93,7 +132,7 @@ function AppContent() {
 ### Privacy Policy Generator
 
 ```jsx
-import { PolicyGenerator, PolicyPreview, PolicyExporter, usePrivacyPolicy } from 'ndpr-toolkit';
+import { PolicyGenerator, PolicyPreview, PolicyExporter, usePrivacyPolicy } from '@tantainnovative/ndpr-toolkit';
 
 function PrivacyPolicyPage() {
   const { policy, updateVariableValue, generatePolicy } = usePrivacyPolicy();
@@ -258,7 +297,7 @@ function AnalyticsComponent() {
 ### Implementing a Data Subject Rights Portal
 
 ```jsx
-import { DSRRequestForm, useDSR } from 'ndpr-toolkit';
+import { DSRRequestForm, DSRTracker, DSRDashboard, useDSR } from '@tantainnovative/ndpr-toolkit';
 
 // 1. Create a form for data subjects to submit requests
 function DSRPortal() {
@@ -295,7 +334,7 @@ function DSRPortal() {
 }
 
 // 2. Create an admin dashboard for managing requests
-import { DSRDashboard } from 'ndpr-toolkit';
+import { DSRDashboard } from '@tantainnovative/ndpr-toolkit';
 
 function AdminDashboard() {
   const { requests, updateRequest, deleteRequest } = useDSR();
@@ -313,7 +352,7 @@ function AdminDashboard() {
 ### Setting Up a Breach Notification System
 
 ```jsx
-import { BreachReportForm, BreachRiskAssessment, useBreach } from 'ndpr-toolkit';
+import { BreachReportForm, BreachRiskAssessment, RegulatoryReportGenerator, useBreach } from '@tantainnovative/ndpr-toolkit';
 
 // 1. Create a form for reporting breaches
 function BreachReporting() {
