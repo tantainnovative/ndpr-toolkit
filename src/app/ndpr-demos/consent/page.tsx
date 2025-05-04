@@ -6,8 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { ConsentBanner, ConsentManager, ConsentStorage } from 'ndpr-toolkit';
-import { ConsentOption, ConsentSettings } from 'ndpr-toolkit/types/consent';
+import { ConsentBanner, ConsentManager, ConsentStorage } from '@tantainnovative/ndpr-toolkit';
+import { ConsentOption, ConsentSettings } from '@tantainnovative/ndpr-toolkit';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 
@@ -172,6 +172,64 @@ export default function ConsentDemoPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
+              <div className="mb-4 flex flex-wrap gap-3">
+                <button
+                  onClick={() => {
+                    // Accept all cookies
+                    const allConsents = {} as Record<string, boolean>;
+                    [
+                      { id: 'necessary', required: true },
+                      { id: 'analytics', required: false },
+                      { id: 'marketing', required: false },
+                      { id: 'preferences', required: false },
+                    ].forEach(option => {
+                      allConsents[option.id] = true;
+                    });
+                    
+                    const newSettings: ConsentSettings = {
+                      consents: allConsents,
+                      timestamp: Date.now(),
+                      version: '1.0',
+                      method: 'accept-all',
+                      hasInteracted: true
+                    };
+                    
+                    handleSaveConsent(newSettings);
+                  }}
+                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                >
+                  Accept All
+                </button>
+                <button
+                  onClick={() => {
+                    // Reject non-essential cookies
+                    const rejectNonEssential = {} as Record<string, boolean>;
+                    [
+                      { id: 'necessary', required: true },
+                      { id: 'analytics', required: false },
+                      { id: 'marketing', required: false },
+                      { id: 'preferences', required: false },
+                    ].forEach(option => {
+                      // Only necessary cookies are enabled
+                      rejectNonEssential[option.id] = option.required;
+                    });
+                    
+                    const newSettings: ConsentSettings = {
+                      consents: rejectNonEssential,
+                      timestamp: Date.now(),
+                      version: '1.0',
+                      method: 'reject-non-essential',
+                      hasInteracted: true
+                    };
+                    
+                    handleSaveConsent(newSettings);
+                  }}
+                  className="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600"
+                >
+                  Reject Non-Essential
+                </button>
+              </div>
+              
               <ConsentManager
                 options={consentOptions}
                 settings={consentSettings || {
@@ -188,8 +246,6 @@ export default function ConsentDemoPage() {
                 title="Manage Consent Preferences"
                 description="Customize your consent preferences below. Required cookies are necessary for the website to function and cannot be disabled."
                 saveButtonText="Save Preferences"
-                acceptAllButtonText="Accept All"
-                rejectAllButtonText="Reject Non-Essential"
               />
             </CardContent>
           </Card>

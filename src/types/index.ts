@@ -87,6 +87,7 @@ export interface RiskAssessment {
   answers: Record<string, number>;
   score?: number;
   recommendations?: string[];
+  categoryScores?: Record<string, { score: number; maxScore: number; percentage: number }>;
 }
 
 // Breach Notification Types

@@ -708,10 +708,10 @@ We practice data minimization, which means we only collect and process the perso
         <p className="mt-4">
           For full docs, visit{' '}
           <Link
-            href="/docs/components/privacy-policy"
+            href="/docs/components/privacy-policy-generator"
             className="text-blue-600 hover:underline"
           >
-            Privacy Policy documentation
+            Privacy Policy Generator documentation
           </Link>
           .
         </p>

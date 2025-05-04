@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
-import { DSRRequestForm, DSRDashboard, DSRTracker, DSRRequest, DSRStatus, DSRType, RequestType } from 'ndpr-toolkit';
+import { DSRRequestForm, DSRDashboard, DSRTracker, DSRRequest, DSRStatus, DSRType, RequestType } from '@tantainnovative/ndpr-toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function DSRDemoPage() {

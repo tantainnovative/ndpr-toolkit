@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { DocLayout } from '../DocLayout';
+import { DocLayout } from '@/components/docs/DocLayout';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 

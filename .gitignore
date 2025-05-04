@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+**/node_modules
+packages/*/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -45,9 +47,17 @@ next-env.d.ts
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
-.vercel
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Build artifacts
+/dist
+/packages/*/dist
+
+# Temporary files
+.temp
+.tmp
+*.swp
+*.swo
