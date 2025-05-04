@@ -1,6 +1,6 @@
 {
-  "name": "ndpr-toolkit",
-  "version": "0.1.0",
+  "name": "@tantainnovative/ndpr-toolkit",
+  "version": "1.0.0",
   "description": "A comprehensive toolkit for implementing NDPR-compliant features in web applications",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -31,6 +31,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/tantainnovative/ndpr-toolkit"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "react": "^18.0.0",
