@@ -110,28 +110,41 @@ export default function DSRDemoPage() {
     setRequests(sampleRequests);
   }, []);
 
+  interface SubmitData {
+    requestType: string;
+    dataSubject: {
+      fullName: string;
+      email: string;
+      phone?: string;
+    };
+    additionalInfo?: {
+      description?: string;
+    };
+  }
+
   const handleSubmitRequest = (data: Record<string, unknown>) => {
+    const req = data as unknown as SubmitData;
     console.log('Received form data:', data);
     
     // Calculate due date based on request type (30 days for access, 15 days for erasure, etc.)
     let dueDays = 30; // Default to 30 days
-    if (data.requestType === 'erasure') dueDays = 15;
-    if (data.requestType === 'rectification') dueDays = 10;
-    if (data.requestType === 'restriction') dueDays = 20;
+    if (req.requestType === 'erasure') dueDays = 15;
+    if (req.requestType === 'rectification') dueDays = 10;
+    if (req.requestType === 'restriction') dueDays = 20;
     
     const newRequest: DSRRequest = {
       id: uuidv4(),
-      type: data.requestType as DSRType,
+      type: req.requestType as DSRType,
       status: 'pending' as DSRStatus,
       createdAt: Date.now(),
       updatedAt: Date.now(),
       dueDate: Date.now() + (dueDays * 24 * 60 * 60 * 1000), // Set due date based on request type
       subject: {
-        name: data.dataSubject.fullName,
-        email: data.dataSubject.email,
-        phone: data.dataSubject.phone
+        name: req.dataSubject.fullName,
+        email: req.dataSubject.email,
+        phone: req.dataSubject.phone
       },
-      description: data.additionalInfo?.description || 'No description provided'
+      description: req.additionalInfo?.description || 'No description provided'
     };
 
     setRequests((prev) => [newRequest, ...prev]);

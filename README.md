@@ -23,6 +23,7 @@ This toolkit simplifies regulatory compliance for startups and businesses operat
   - Right to restrict processing
   - Right to data portability
   - Dashboard for data controllers to manage requests
+  - Local storage requestService to track and update requests in demos
 
 ### 3. Privacy Policy Generator
 - Interactive wizard to create NDPR-compliant privacy policies
@@ -41,6 +42,9 @@ This toolkit simplifies regulatory compliance for startups and businesses operat
 - Workflow for documenting breach details
 - Timeline tracking to ensure 72-hour notification compliance
 - Notification delivery to authorities via API (if available)
+### 6. Data Subject Request Service
+- Lightweight requestService storing requests in browser localStorage for demos
+- Helper methods to update request status and retrieve history
 
 ## Getting Started
 
