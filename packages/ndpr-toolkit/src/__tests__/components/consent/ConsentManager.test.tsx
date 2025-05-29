@@ -87,8 +87,8 @@ describe('ConsentManager', () => {
     );
     
     // Find the analytics checkbox (non-required)
-    const analyticsCheckboxes = screen.getAllByRole('checkbox');
-    const analyticsCheckbox = analyticsCheckboxes.find(checkbox => !checkbox.hasAttribute('disabled'));
+    const analyticsCheckboxes = screen.getAllByRole('checkbox') as HTMLInputElement[];
+    const analyticsCheckbox = analyticsCheckboxes.find((checkbox: HTMLInputElement) => !checkbox.hasAttribute('disabled'));
     
     // Toggle the checkbox
     if (analyticsCheckbox) {
@@ -111,10 +111,10 @@ describe('ConsentManager', () => {
     );
     
     // Find all checkboxes
-    const checkboxes = screen.getAllByRole('checkbox');
+    const checkboxes = screen.getAllByRole('checkbox') as HTMLInputElement[];
     
     // Find the necessary checkbox (required)
-    const necessaryCheckbox = checkboxes.find(checkbox => checkbox.hasAttribute('disabled'));
+    const necessaryCheckbox = checkboxes.find((checkbox: HTMLInputElement) => checkbox.hasAttribute('disabled'));
     
     // Check thatit&apos;s disabled
     expect(necessaryCheckbox).toBeDisabled();
