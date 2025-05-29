@@ -137,7 +137,7 @@ export default function PolicyDemoPage() {
               sectionVars.forEach((varName) => {
                 if (typeof varName !== 'string') return;
                 
-                let val = policyData?.[varName] || '';
+                let val: unknown = policyData?.[varName] ?? '';
                 
                 // Format array values as professional bullet points
                 if (Array.isArray(val) && val.length > 0) {
@@ -164,9 +164,10 @@ export default function PolicyDemoPage() {
                 
                 try {
                   // Replace both triple and double braces for HTML/plain text
+                  const valStr = String(val);
                   processed = processed
-                    .replace(new RegExp(`\\{\\{\\{${varName}\\}\\}\\}`, 'g'), val)
-                    .replace(new RegExp(`\\{\\{${varName}\\}\\}`, 'g'), val);
+                    .replace(new RegExp(`\\{\\{\\{${varName}\\}\\}\\}`, 'g'), valStr)
+                    .replace(new RegExp(`\\{\\{${varName}\\}\\}`, 'g'), valStr);
                 } catch (regexError) {
                   console.error('Error replacing variables:', regexError);
                 }
@@ -215,7 +216,7 @@ export default function PolicyDemoPage() {
       // Update state with validated data
       setGeneratedPolicy(sections);
       setPolicyVariables(variables);
-      setPolicyData(values);
+      setPolicyData(values as Record<string, unknown>);
       
       // Only navigate if we have valid sections
       if (sections.length > 0) {
@@ -633,7 +634,7 @@ We practice data minimization, which means we only collect and process the perso
                   sections={generatedPolicy}
                   variables={policyVariables || []}
                   onEdit={handlePolicyEdit}
-                  organizationName={policyData?.organizationName || 'Your Organization'}
+                  organizationName={String(policyData?.organizationName || 'Your Organization')}
                   lastUpdated={new Date()}
                   showTableOfContents={true}
                   showMetadata={true}
@@ -648,11 +649,11 @@ We practice data minimization, which means we only collect and process the perso
               )}
             </CardContent>
           </Card>
-          {policyData && policyData.contactEmail && (
+          {policyData && (policyData as Record<string, any>).contactEmail && (
             <div className="mt-6 text-sm text-gray-500">
               Questions? Contact{' '}
-              <a href={`mailto:${policyData.contactEmail}`}>
-                {policyData.contactEmail}
+              <a href={`mailto:${String((policyData as Record<string, any>).contactEmail)}`}>
+                {String((policyData as Record<string, any>).contactEmail)}
               </a>
             </div>
           )}
@@ -671,8 +672,8 @@ We practice data minimization, which means we only collect and process the perso
               {generatedPolicy && generatedPolicy.length > 0 ? (
                 <PolicyExporter
                   content={generateFormattedContent()}
-                  title={`${policyData?.organizationName || 'Your Org'} Privacy Policy`}
-                  organizationName={policyData?.organizationName || 'Your Org'}
+                  title={`${String(policyData?.organizationName || 'Your Org')} Privacy Policy`}
+                  organizationName={String(policyData?.organizationName || 'Your Org')}
                   lastUpdated={new Date()}
                   componentTitle="Export Privacy Policy"
                   description="Download in PDF, HTML, or Markdown."
