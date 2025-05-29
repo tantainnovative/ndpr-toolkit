@@ -18,11 +18,16 @@ import {
   PolicyVariable
 } from '@tantainnovative/ndpr-toolkit';
 import type { PolicyTemplate } from '@tantainnovative/ndpr-toolkit';
-  
+
+interface PolicyData extends Record<string, unknown> {
+  contactEmail?: string;
+  organizationName?: string;
+}
+
 export default function PolicyDemoPage() {
   const [activeTab, setActiveTab] = useState<string>('generator');
   // Initialize with empty objects/arrays to prevent undefined errors
-  const [policyData, setPolicyData] = useState<Record<string, unknown>>({});
+  const [policyData, setPolicyData] = useState<PolicyData>({});
   const [generatedPolicy, setGeneratedPolicy] = useState<PolicySection[]>([]);
   const [policyVariables, setPolicyVariables] = useState<PolicyVariable[]>([]);
 
@@ -649,12 +654,10 @@ We practice data minimization, which means we only collect and process the perso
               )}
             </CardContent>
           </Card>
-          {policyData && (policyData as Record<string, any>).contactEmail && (
+          {policyData && policyData.contactEmail && (
             <div className="mt-6 text-sm text-gray-500">
               Questions? Contact{' '}
-              <a href={`mailto:${String((policyData as Record<string, any>).contactEmail)}`}>
-                {String((policyData as Record<string, any>).contactEmail)}
-              </a>
+              <a href={`mailto:${policyData.contactEmail}`}>{policyData.contactEmail}</a>
             </div>
           )}
         </TabsContent>
